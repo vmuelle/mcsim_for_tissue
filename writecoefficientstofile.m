@@ -49,12 +49,12 @@ freqency_dependent_parameters = [lambda; absorption_water; absorption_hb; absorp
 
 
 %Parameters for the simulation
-photons = 100;
+photons = 1000;
 dz = 0.001;
 dr = 0.001;
 n_dz = 773;
-n_dr = 50;
-n_da = 1;
+n_dr = 1000;
+n_da = 90;
 sim = [photons,dz,dr,n_dz,n_dr,n_da];
 %Transform parameters into sufficient values
 coefficients = Coefficients(normal_skin,compressed_skin,fixed_parameters,freqency_dependent_parameters);
@@ -113,8 +113,9 @@ function print_to_file(coeff,fileID,lambda,type_sd,type_cn,sim)
                     coeff(layer,freq,4), ...
                     coeff(layer,freq,5), ...
                     layer);
-            end
-            fprintf(fileID,['1                        	# n for medium below\n\n']);
+            end           
+            fprintf(fileID,[''...
+            '1                        	# n for medium below\n\n']);
     end
 end
 
