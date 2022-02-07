@@ -8,7 +8,7 @@ clear all;
 %light in skin tissue. The outputfiles of MCML are used for this. 
 %%%%
 
-PLOTON = 0;%If PLOTON = 1, the Flux curves are shown for each input file. If PLOTON = 0 only the final plot over all Wavelength is shown.
+PLOTON = 1;%If PLOTON = 1, the Flux curves are shown for each input file. If PLOTON = 0 only the final plot over all Wavelength is shown.
 PD = zeros(1,8); % Parameter for penetration-depth
 DO = zeros(1,8); % Parameter for depth-origin 
 lambda = [400 450 500 550 600 650 700 725]; % wavelenght
@@ -46,37 +46,40 @@ function [PD DO] = pd_do(mcml_data_d,mcml_data_s,PLOTON)
 % PD = 63.2% of the area under the diastolic or systolic flow curves
 % DO = 63.2% of the area under the difference of diastolic-systolic flow curves.
 %%%%
-    Az = mcml_data_d.Az;
-    A_sum = sum(Az,1);
-    A_size = size(Az,1);
-    A_flux = zeros(1,A_size);
-    A_flux(1) = A_sum;
-    PD_sum = Az(1);
-    for depth = 2:A_size
-        A_flux(depth) = A_flux(depth-1)-Az(depth);
-        if(PD_sum > 0.632*A_sum)
-            PD = depth/A_size;
+
+    Fz = mcml_data_d.Fz;
+    F_sum = sum(Fz,1);
+    F_size = size(Fz,1);
+    F_flux = zeros(1,F_size);
+    F_flux(1) = F_sum;
+    PD_sum = Fz(1);
+    for depth = 2:F_size
+        F_flux(depth) = F_flux(depth-1)-Fz(depth);
+        if(PD_sum > 0.632*F_sum)
+            PD = depth/F_size;
             break;
         end
-        PD_sum = PD_sum + Az(depth);
+        PD_sum = PD_sum + Fz(depth);
+    end
+    
+    size_d = size(mcml_data_d.Fz,1);
+    delta_d_s_Fz = abs(mcml_data_d.Fz - mcml_data_s.Fz(1:size_d));
+    delta_d_s_sum = sum(delta_d_s_Fz);
+    DO_sum = 0;
+    for depth = 1:F_size
+        if(DO_sum > 0.632*delta_d_s_sum)
+            DO = depth/F_size;
+            break;
+        end
+        DO_sum = DO_sum + delta_d_s_Fz(depth);
     end
 
-    delta_d_s_Az = abs(mcml_data_d.Az - mcml_data_s.Az);
-    delta_d_s_sum = sum(delta_d_s_Az);
-    DO_sum = 0;
-    for depth = 1:A_size
-        if(DO_sum > 0.632*delta_d_s_sum)
-            DO = depth/A_size;
-            break;
-        end
-        DO_sum = DO_sum + delta_d_s_Az(depth);
-    end
 
     if PLOTON
-        A_flux = A_flux./A_sum; 
-        f   = [1:-1/(A_size-1):0];
+        F_flux = F_flux./F_sum; 
+        f   = [1:-1/(F_size-1):0];
         figure
-        plot(f,1-A_flux,[0 1],[PD PD],f,delta_d_s_Az,[0 1],[DO DO]);
+        plot(f,1-F_flux,[0 1],[PD PD],f,delta_d_s_Fz,[0 1],[DO DO]);
         %plot(f,1-A_flux,[0 1],[PD PD]);
         xlabel('Flux in percent')
         ylabel('PD in cm')

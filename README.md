@@ -19,4 +19,4 @@ When running mcml.exe the reults will be stored in data_files/outputs.
 The output files will have the same n/c d/s signature and a number corresponding to the wavelength of light the simulation was run with.
 To further look into the results, run lookmcml.m
 Here you also have to manually edit the code and give the name of the simulated output (.mco) to look into a specific result. 
- 
+To visualize the penetration depth and the depth origin of the simulated tissue, run visPD_DO.m

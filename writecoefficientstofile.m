@@ -10,10 +10,11 @@ c_w_n = [0.2 0.65 0.65 0.65 0.65 0.05];
 c_f_n = [0 0 0 0 0 0.4];
 v_d_n = [0 10 20 20 40 50];
 sc_n = [15 20 20 20 20 10];
+pulsation_pattern_w_ref = [0 0 1/3 2/3 1 1/3];
 
 ratio_a_nv_n = [0 0.5 0.5 0.5 0.5 0.5];
 
-normal_skin =[n_n; d_d_n; c_b_n; c_w_n; c_f_n; v_d_n; sc_n; ratio_a_nv_n];
+normal_skin =[n_n; d_d_n; c_b_n; c_w_n; c_f_n; v_d_n; sc_n; ratio_a_nv_n; pulsation_pattern_w_ref];
 
 %Given parameters for skin layers compressed
 n_c = [1.33 1.37 1.40 1.40 1.44];
@@ -24,9 +25,14 @@ c_f_c = [0 0 0 0 0.4];
 v_d_c = [0 10 20 20 40];
 sc_c = [15 20 20 20 10];
 
+%for some reason this parameter is given with 6 values even if compressed
+%skin elsewhere is always displayed as 5 layers (4 and 5 are viewed as one)
+pulsation_pattern_w_comp_raw = [0 0 0 2/3 18/3 1/3];
+pulsation_pattern_w_comp = [0 0 0 (2+18)/(3*2) 1/3];
+
 ratio_a_nv_c = [0 1 1 1 0.75];
 
-compressed_skin =[n_c; d_d_c; c_b_c; c_w_c; c_f_c; v_d_c; sc_c; ratio_a_nv_c];
+compressed_skin =[n_c; d_d_c; c_b_c; c_w_c; c_f_c; v_d_c; sc_c; ratio_a_nv_c; pulsation_pattern_w_comp];
 
 %Parameters for development
 num_freq= 8;
@@ -49,20 +55,14 @@ freqency_dependent_parameters = [lambda; absorption_water; absorption_hb; absorp
 
 
 %Parameters for the simulation
-photons = 1000;
+photons = 100000;
 dz = 0.001;
 dr = 0.001;
-n_dz = 773;
 n_dr = 1000;
 n_da = 90;
-sim = [photons,dz,dr,n_dz,n_dr,n_da];
+sim = [photons,dz,dr,n_dr,n_da];
 %Transform parameters into sufficient values
 coefficients = Coefficients(normal_skin,compressed_skin,fixed_parameters,freqency_dependent_parameters);
-
-
-
-
-
 
 
 fileID = fopen('data_files/inputs/coefficients_s_n.mci','w');
@@ -92,6 +92,12 @@ function print_to_file(coeff,fileID,lambda,type_sd,type_cn,sim)
         '1.0                      	# file version\n'...
         '%d                        	# number of runs\n'],type_sd,type_cn,number_of_runs);
     for freq = 1:number_of_runs
+        n_dz = 0;
+        for layer = 1:size(coeff,1);
+            n_dz = n_dz + coeff(layer,freq,5);
+        end
+        n_dz = n_dz/sim(2);
+        n_dz = cast(n_dz,'uint32');
         fprintf(fileID,[''...
             '#### SPECIFY DATA FOR RUN %d at lambda = %d\n'...
             '#InParm                    	# Input parameters. cm is used.\n'...
@@ -104,7 +110,7 @@ function print_to_file(coeff,fileID,lambda,type_sd,type_cn,sim)
             '#n	mua	mus	g	d         	# One line for each layer\n'...
             '1                         	# n for medium above\n'], ...
             freq,lambda(freq),type_sd,type_cn,lambda(freq), ...
-            sim(1),sim(2),sim(3),sim(4),sim(5),sim(6),size(coeff,1));
+            sim(1),sim(2),sim(3),n_dz,sim(4),sim(5),size(coeff,1));
             for layer = 1:size(coeff,1)
                 fprintf(fileID,['%f	%f	%f	%f	%f    	# layer %d\n'], ...
                     coeff(layer,freq,1), ...

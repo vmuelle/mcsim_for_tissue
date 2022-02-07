@@ -19,6 +19,7 @@ classdef Coefficients < handle
         c_f_n;
         v_d_n;
         sc_n;
+        p_n;
 
         %Given parameters for skin layers compressed
         n_c;
@@ -28,7 +29,8 @@ classdef Coefficients < handle
         c_f_c;
         v_d_c;
         sc_c;
-        
+        p_c;
+
         %Parameters for development
         num_freq;
         
@@ -37,6 +39,7 @@ classdef Coefficients < handle
         spO2;
         svO2;
         p;
+       
         ratio_a_nv_n; 
         ratio_a_nv_c;
         absorption_water; 
@@ -92,6 +95,7 @@ classdef Coefficients < handle
             obj.v_d_n = normal_skin(6,:);
             obj.sc_n = normal_skin(7,:);
             obj.ratio_a_nv_n = normal_skin(8,:);
+            obj.p_n = normal_skin(9,:);
             obj.n_c = compressed_skin(1,:);
             obj.d_d_c = compressed_skin(2,:);
             obj.c_b_c = compressed_skin(3,:);
@@ -100,6 +104,7 @@ classdef Coefficients < handle
             obj.v_d_c = compressed_skin(6,:);
             obj.sc_c = compressed_skin(7,:);
             obj.ratio_a_nv_c = compressed_skin(8,:);
+            obj.p_c = compressed_skin(9,:);
             obj.c_w_0 = fixed_parameters(1);
             obj.spO2 = fixed_parameters(2);
             obj.svO2 = fixed_parameters(3);
@@ -156,17 +161,18 @@ classdef Coefficients < handle
             obj.make_final_coefficient_arrays();
         end
     
-        %transform extrinction coefficients into absorption coefficients
         function get_absorption_from_extrinction(self)
+        %transform extrinction coefficients into absorption coefficients
             for freq = 1:self.num_freq
                 self.absorption_hb(freq) = 2.303 * self.absorption_hb(freq) * 150 / 64500;
                 self.absorption_hbO2(freq) = 2.303 * self.absorption_hbO2(freq) * 150 / 64500;
             end
         end
         
+       
+        function blood_concentration_effective_diastolic(self)
         %determine effective blood concentraition with different parameters for
         %arterial and venous blood in diastolic state
-        function blood_concentration_effective_diastolic(self)
             for freq = 1:self.num_freq
                 for layer = 2:6
                     self.f_a_n(layer,freq) = self.ratio_a_nv_n(layer) * self.c_b_n(layer) * self.arterial_venous_c_b(((1-self.spO2)*self.absorption_hb(freq))+(self.spO2*self.absorption_hbO2(freq)),self.v_d_n(layer));
@@ -182,27 +188,29 @@ classdef Coefficients < handle
             end
         end
         
+       
+        function blood_concentration_effective_systolic(self)
         %determine effective blood concentraition with different parameters for
         %arterial and venous blood in systolic state
-        function blood_concentration_effective_systolic(self)
             for freq = 1:self.num_freq
                 for layer = 2:6
-                    self.f_a_s_n(layer,freq) = self.f_a_n(layer,freq) + self.p*self.arterial_venous_c_b(((1-self.spO2)*self.absorption_hb(freq))+(self.spO2*self.absorption_hbO2(freq)),self.v_d_n(layer));
-                    self.c_b_s_n_corrected(layer,freq) = self.c_b_d_n_corrected(layer,freq)+self.p*self.arterial_venous_c_b(((1-self.spO2)*self.absorption_hb(freq))+(self.spO2*self.absorption_hbO2(freq)),self.v_d_n(layer));
-                    self.d_s_n(layer,freq) = self.d_d_n(layer)*(1+self.c_b_s_n_corrected(layer,freq)*self.p);
+                    self.f_a_s_n(layer,freq) = self.f_a_n(layer,freq) + self.p_n(layer)*self.arterial_venous_c_b(((1-self.spO2)*self.absorption_hb(freq))+(self.spO2*self.absorption_hbO2(freq)),self.v_d_n(layer));
+                    self.c_b_s_n_corrected(layer,freq) = self.c_b_d_n_corrected(layer,freq)+self.p_n(layer)*self.arterial_venous_c_b(((1-self.spO2)*self.absorption_hb(freq))+(self.spO2*self.absorption_hbO2(freq)),self.v_d_n(layer));
+                    self.d_s_n(layer,freq) = self.d_d_n(layer)*(1+self.c_b_s_n_corrected(layer,freq)*self.p_n(layer));
                 end
                 
                 for layer = 2:5 
-                    self.f_a_s_c(layer,freq) = self.f_a_c(layer,freq) + self.p*self.arterial_venous_c_b(((1-self.spO2)*self.absorption_hb(freq))+(self.spO2*self.absorption_hbO2(freq)),self.v_d_c(layer));
-                    self.c_b_s_c_corrected(layer,freq) = self.c_b_d_c_corrected(layer,freq)+self.p*self.arterial_venous_c_b(((1-self.spO2)*self.absorption_hb(freq))+(self.spO2*self.absorption_hbO2(freq)),self.v_d_c(layer));
-                    self.d_s_c(layer,freq) = self.d_d_c(layer)*(1+self.c_b_s_c_corrected(layer,freq)*self.p);
+                    self.f_a_s_c(layer,freq) = self.f_a_c(layer,freq) + self.p_c(layer)*self.arterial_venous_c_b(((1-self.spO2)*self.absorption_hb(freq))+(self.spO2*self.absorption_hbO2(freq)),self.v_d_c(layer));
+                    self.c_b_s_c_corrected(layer,freq) = self.c_b_d_c_corrected(layer,freq)+self.p_c(layer)*self.arterial_venous_c_b(((1-self.spO2)*self.absorption_hb(freq))+(self.spO2*self.absorption_hbO2(freq)),self.v_d_c(layer));
+                    self.d_s_c(layer,freq) = self.d_d_c(layer)*(1+self.c_b_s_c_corrected(layer,freq)*self.p_c(layer));
                 end
             end
         end
         
         
-        %calculate absorption coefficients for first layer (epidermis)
+       
         function absorption_first_layer(self)
+        %calculate absorption coefficients for first layer (epidermis)
             for freq = 1:self.num_freq
                 self.absorption_complete_d_n(1,freq) = (self.c_w_n(1)*self.absorption_water(freq)) + (1-self.c_w_n(1)) * 0.5*(0.244+(85.3*exp((-self.lambda(freq)-154)/66.2)));
                 self.absorption_complete_s_n(1,freq) = self.absorption_complete_d_n(1,freq);
@@ -212,8 +220,9 @@ classdef Coefficients < handle
             end 
         end
         
-        %calculate base absorption coefficients (normal and compressed)
+       
         function absorption_base(self)
+        %calculate base absorption coefficients (normal and compressed)
             for freq = 1:self.num_freq
                 for layer = 2:5
                     self.absorption_base_n(layer,freq) = 0.5 * (self.c_w_n(layer)/self.c_w_0)* (0.244 + 16.82* exp((-self.lambda(freq)-400)/80.5));
@@ -227,9 +236,10 @@ classdef Coefficients < handle
             end
         end
         
+       
+        function absorption_without_blood(self)
         %calculate absorption coefficients for all other layers WITHOUT blood (normal and
         %compressed)
-        function absorption_without_blood(self)
             for freq = 1:self.num_freq
                 for layer = 2:6
                     self.absorption_complete_d_n(layer,freq) = self.c_f_n(layer)*self.absorption_fat(freq) + (1-self.c_f_n(layer))* self.c_w_n(layer) * self.absorption_water(freq) + (1-self.c_f_n(layer))*(1-self.c_w_n(layer))*self.absorption_base_n(layer,freq);
@@ -261,9 +271,10 @@ classdef Coefficients < handle
             end
         end
         
+       
+        function absorption_systolic_state(self)
         %calculate absorption coefficients for all other layers WITH blood (normal and
         %compressed) in systolic state
-        function absorption_systolic_state(self)
             for freq = 1:self.num_freq
                 for layer = 2:6
                     self.absorption_complete_s_n(layer,freq) = self.d_d_n(layer)/self.d_s_n(layer,freq) ...
@@ -285,8 +296,9 @@ classdef Coefficients < handle
             end
         end
 
-        %Get scattering parameters
+        
         function scattering(self)
+        %Get scattering parameters
             for freq = 1:self.num_freq
                 for layer = 1:6
                     self.scattering_n(layer,freq) = self.sc_n(layer)* self.lambda(freq)^(-self.sc_b(freq)); 
@@ -298,10 +310,14 @@ classdef Coefficients < handle
         end
     
         function c_b_x = arterial_venous_c_b(self,absorption,v_d)
+        %calculate arterial and venous c
             c_b_x = 1/(1+1.007*(absorption*v_d/2)^1.228);
         end
 
         function make_final_coefficient_arrays(self)
+        %write coefficients into a sturcure, that has every parameter
+        %needed for the MCML input in a 2D array and for ever frequency in
+        %the third dimension
             for freq = 1:self.num_freq
                 for layer = 1:6
                     self.complete_coefficients_normal_diastolic(layer,freq,:) = ...

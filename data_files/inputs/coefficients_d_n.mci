@@ -11,7 +11,7 @@
 #### SPECIFY DATA FOR RUN 1 at lambda = 400
 #InParm                    	# Input parameters. cm is used.
 data_files/outputs/sample_d_n_400.mco 	A            	# output file name, ASCII.
-1000	                  	    # No. of photons
+100000	                  	    # No. of photons
 0.001000	0.001000               	# dz, dr [cm]
 773	1000	90                	# No. of dz, dr, da.
 
@@ -29,7 +29,7 @@ data_files/outputs/sample_d_n_400.mco 	A            	# output file name, ASCII.
 #### SPECIFY DATA FOR RUN 2 at lambda = 450
 #InParm                    	# Input parameters. cm is used.
 data_files/outputs/sample_d_n_450.mco 	A            	# output file name, ASCII.
-1000	                  	    # No. of photons
+100000	                  	    # No. of photons
 0.001000	0.001000               	# dz, dr [cm]
 773	1000	90                	# No. of dz, dr, da.
 
@@ -47,7 +47,7 @@ data_files/outputs/sample_d_n_450.mco 	A            	# output file name, ASCII.
 #### SPECIFY DATA FOR RUN 3 at lambda = 500
 #InParm                    	# Input parameters. cm is used.
 data_files/outputs/sample_d_n_500.mco 	A            	# output file name, ASCII.
-1000	                  	    # No. of photons
+100000	                  	    # No. of photons
 0.001000	0.001000               	# dz, dr [cm]
 773	1000	90                	# No. of dz, dr, da.
 
@@ -65,7 +65,7 @@ data_files/outputs/sample_d_n_500.mco 	A            	# output file name, ASCII.
 #### SPECIFY DATA FOR RUN 4 at lambda = 550
 #InParm                    	# Input parameters. cm is used.
 data_files/outputs/sample_d_n_550.mco 	A            	# output file name, ASCII.
-1000	                  	    # No. of photons
+100000	                  	    # No. of photons
 0.001000	0.001000               	# dz, dr [cm]
 773	1000	90                	# No. of dz, dr, da.
 
@@ -83,7 +83,7 @@ data_files/outputs/sample_d_n_550.mco 	A            	# output file name, ASCII.
 #### SPECIFY DATA FOR RUN 5 at lambda = 600
 #InParm                    	# Input parameters. cm is used.
 data_files/outputs/sample_d_n_600.mco 	A            	# output file name, ASCII.
-1000	                  	    # No. of photons
+100000	                  	    # No. of photons
 0.001000	0.001000               	# dz, dr [cm]
 773	1000	90                	# No. of dz, dr, da.
 
@@ -101,7 +101,7 @@ data_files/outputs/sample_d_n_600.mco 	A            	# output file name, ASCII.
 #### SPECIFY DATA FOR RUN 6 at lambda = 650
 #InParm                    	# Input parameters. cm is used.
 data_files/outputs/sample_d_n_650.mco 	A            	# output file name, ASCII.
-1000	                  	    # No. of photons
+100000	                  	    # No. of photons
 0.001000	0.001000               	# dz, dr [cm]
 773	1000	90                	# No. of dz, dr, da.
 
@@ -119,7 +119,7 @@ data_files/outputs/sample_d_n_650.mco 	A            	# output file name, ASCII.
 #### SPECIFY DATA FOR RUN 7 at lambda = 700
 #InParm                    	# Input parameters. cm is used.
 data_files/outputs/sample_d_n_700.mco 	A            	# output file name, ASCII.
-1000	                  	    # No. of photons
+100000	                  	    # No. of photons
 0.001000	0.001000               	# dz, dr [cm]
 773	1000	90                	# No. of dz, dr, da.
 
@@ -137,7 +137,7 @@ data_files/outputs/sample_d_n_700.mco 	A            	# output file name, ASCII.
 #### SPECIFY DATA FOR RUN 8 at lambda = 725
 #InParm                    	# Input parameters. cm is used.
 data_files/outputs/sample_d_n_725.mco 	A            	# output file name, ASCII.
-1000	                  	    # No. of photons
+100000	                  	    # No. of photons
 0.001000	0.001000               	# dz, dr [cm]
 773	1000	90                	# No. of dz, dr, da.
 
