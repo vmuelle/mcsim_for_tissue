@@ -8,40 +8,61 @@ clear all;
 %light in skin tissue. The outputfiles of MCML are used for this. 
 %%%%
 
-PLOTON = 1;%If PLOTON = 1, the Flux curves are shown for each input file. If PLOTON = 0 only the final plot over all Wavelength is shown.
+PLOTON = 0;%If PLOTON = 1, the Flux curves are shown for each input file. If PLOTON = 0 only the final plot over all Wavelength is shown.
 PD = zeros(1,8); % Parameter for penetration-depth
 DO = zeros(1,8); % Parameter for depth-origin 
-lambda = [400 450 500 550 600 650 700 725]; % wavelenght
-
+lambda = [400 450 500 550 600 650 700 750 800 850 900 950 1000]; % wavelenght
+PD_c = zeros(1,8); % Parameter for penetration-depth
+DO_c = zeros(1,8); % Parameter for depth-origin 
 
 %for all wavelength read file and calcuate PD and DO
 for i = 1:size(lambda,2)
     mcml_data_d = Readmcml("data_files/outputs/sample_d_n_" + lambda(i) + ".mco");
     mcml_data_s = Readmcml("data_files/outputs/sample_s_n_" + lambda(i) + ".mco");
-    [PD(i),DO(i)] = pd_do(mcml_data_d,mcml_data_s,PLOTON);
+    [PD(i),DO(i)] = pd_do(mcml_data_d,mcml_data_s,PLOTON,lambda);
 end
+make_figure(PD,DO,mcml_data_d,lambda);
+
+for i = 1:size(lambda,2)
+    mcml_data_d = Readmcml("data_files/outputs/sample_d_c_" + lambda(i) + ".mco");
+    mcml_data_s = Readmcml("data_files/outputs/sample_s_c_" + lambda(i) + ".mco");
+    [PD_c(i),DO_c(i)] = pd_do(mcml_data_d,mcml_data_s,PLOTON,lambda);
+end
+make_figure(PD_c,DO_c,mcml_data_d,lambda);
 %% 
 
+function make_figure(PD,DO,mcml_data_d,lambda)
 %make figure with all skin Layers and the PD DO plot
 figure
 hold on
 Fz_size = size(mcml_data_d.Fz,1);
 PD = PD.*mcml_data_d.dz;
-plot(lambda,PD);
+plot(lambda,PD,'DisplayName','PD');
 DO = DO.*mcml_data_d.dz;
-plot(lambda,DO);
+plot(lambda,DO,'DisplayName','DO');
 depth = 0;
 for i = 1:size(mcml_data_d.d)
     depth = depth + mcml_data_d.d(i); 
-    plot([lambda(1) lambda(end)],[depth depth]);
+    name = sprintf('Layer %d', i);
+    plot([lambda(1) lambda(end)],[depth depth],'DisplayName',name);
 end
 xlabel('wavelength [nm]')
 ylabel('PD')
 axis([lambda(1) lambda(end) 0 Fz_size*mcml_data_d.dz])
 set(gca, 'YDir','reverse');
+if(size(mcml_data_d.d) == 6)
+    title("Penetration Depth and Depth Origin for normal skin")
+else
+    title("Penetration Depth and Depth Origin for compressed skin")
+end
+hold off
+legend
+end
+
+
 %%
 
-function [PD DO] = pd_do(mcml_data_d,mcml_data_s,PLOTON)
+function [PD DO] = pd_do(mcml_data_d,mcml_data_s,PLOTON,lambda)
 %%%%
 % calculation for PD and DO
 % PD = 63.2% of the area under the diastolic or systolic flow curves
@@ -109,10 +130,22 @@ function [PD DO] = pd_do(mcml_data_d,mcml_data_s,PLOTON)
         DO_plot = DO/size(delta_Fz,1);
         DO_max = max(delta_Fz);
         delta_Fz = delta_Fz./DO_max;
-        plot(F_pd_plot,f,[0 1],[PD_plot PD_plot],[F_pd_plot(PD) F_pd_plot(PD)],[0 1],delta_Fz,f_delta,[0 1],[DO_plot DO_plot]);
+        hold on
+        plot(F_pd_plot,f,'DisplayName','Flux in percent')
+        plot([0 1],[PD_plot PD_plot],'DisplayName','PD(at 63 percent)')
+        %plot([F_pd_plot(PD) F_pd_plot(PD)],[0 1],'DisplayName','')
+        plot(delta_Fz,f_delta,'DisplayName','Delta Flux')
+        plot([0 1],[DO_plot DO_plot],'DisplayName','DO');
+        hold off 
+        legend
         xlabel('Flux in percent')
         ylabel('PD in cm')
         set(gca, 'YDir','reverse');
+        if(size(mcml_data_d.d) == 6)
+            title(sprintf("Flux and Delta flux for normal skin at %d nm",lambda))
+        else
+            title(sprintf("Flux and Delta flux for compressed skin at %d nm",lambda))
+        end
         grid;
     end
 end

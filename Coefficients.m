@@ -159,6 +159,7 @@ classdef Coefficients < handle
             obj.absorption_diastolic_state();
             obj.scattering();
             obj.make_final_coefficient_arrays();
+
         end
     
         function get_absorption_from_extrinction(self)

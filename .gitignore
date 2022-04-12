@@ -1,0 +1,6 @@
+*.mci
+*.mco
+*.asv
+*.bin
+/data_files
+/mcxyzn
