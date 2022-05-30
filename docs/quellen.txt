@@ -1,3 +1,5 @@
 absorptionskoeffizienten wasser: R.M. Pope : https://omlc.org/spectra/water/data/pope97.txt
 absorptionskoeffizienten hb hbO2: W. B. Gratzer:https://omlc.org/spectra/hemoglobin/summary.html
 absorptionskoeffizienzen fat: https://omlc.org/spectra/fat/fat.txt
+
+MCXYZN und einige Matlab funktionen, die als vorbild dienen https://github.com/phongatran/mcxyzn/

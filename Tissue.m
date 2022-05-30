@@ -21,7 +21,10 @@ classdef Tissue
         %  with 50 nm steps (so it's 13 wavelenths) with properties d_: 'diastolic' or 'systolic and n_: 'normal' or
         %  'compressed'
             j = 1;
-            for i = 400:50:700  %for i = 400:50:1000 
+            %nmLIB = [400 450 500 550 600 650 700 725];
+            nmLIB = [470 530 660 770 810 940 1020 1050];
+            %for i = 400:50:1000  %for i = 400:50:1000 
+            for i = nmLIB
                 tissue = self.makeTissue(i,d_,n_);
                 tissue(1).nm = i;
                 tissueList(j,:) = tissue;
@@ -43,7 +46,7 @@ classdef Tissue
             obj.c_w_0 = 0.65;       %coefficient that accounts for background measurement
             obj.spO2 = 0.97;        %aterial oxygen saturation
             obj.svO2 = 0.67;        %venious oxgen saturation
-            obj.p = 0.1;            %pulsation increase
+            obj.p = 0.3;            %pulsation increase
             obj.anisotrophy = 0.9;  %anisotrophy
             obj.sc_b = 0.1;         %decaying factor for scattering
             if(obj.nm>580)                                                                          
@@ -51,7 +54,7 @@ classdef Tissue
             end
         
             % Load spectral library
-            load spectralLIBv2.mat %load spectralLIB.mat
+            load spectralLIBv3.mat %load spectralLIB.mat
             %   muadeoxy      701x1              5608  double              
             %   muamel        701x1              5608  double              
             %   muaoxy        701x1              5608  double              
@@ -76,7 +79,7 @@ classdef Tissue
                 obj.v_d = [0 10 20 20 40 50];               %vessel diameters
                 obj.sc = [15 20 20 20 20 10];               %scattering calibration constant
                 obj.ratio_a_nv = [0 0.5 0.5 0.5 0.5 0.5];   %ratio aterial blood (not venious)
-        
+                
                 tissue(1).name = 'EPIDERMIS';
                 tissue(2).name = 'CAPILLARY LOOPS';
                 tissue(3).name = 'UPPER PLEXUS';
@@ -88,7 +91,8 @@ classdef Tissue
                     tissue(i).n = n(i);
                     tissue(i).d = obj.d(i);
                     tissue(i).g = obj.anisotrophy;
-                    tissue(i).mus = obj.scattering(i);
+                    tissue(i).mus = obj.sc(i);
+                    %tissue(i).mus = obj.scattering(i);
                 end
                 
                  tissue(1).mua = obj.absorption_first_layer();
@@ -124,7 +128,8 @@ classdef Tissue
                     tissue(i).n = n(i);
                     tissue(i).d = obj.d(i);
                     tissue(i).g = obj.anisotrophy;
-                    tissue(i).mus = obj.scattering(i);
+                    tissue(i).mus = obj.sc(i);
+                    %tissue(i).mus = obj.scattering(i);
                 end
                 
                 tissue(1).mua = obj.absorption_first_layer();
@@ -172,7 +177,8 @@ classdef Tissue
         %function afl =  absorption_first_layer()
         % Returns the absorption coefficient 'afl' for first layer (epidermis)
         
-            afl = (obj.c_w(1)*obj.absorption_water) + (1-obj.c_b(1)) * 0.5*(0.244+(85.3*exp((-obj.nm-154)/66.2)));
+            mua_base_epi = 0.5*(0.244+(85.3*exp(-(obj.nm-154)/66.2)));
+            afl = (obj.c_w(1)*obj.absorption_water) + (1-obj.c_w(1)) * mua_base_epi; 
         end
                 
                
@@ -184,7 +190,7 @@ classdef Tissue
             if(layer == length(obj.c_w))
                 factor = 0.25;
             end
-            a_base = factor * (obj.c_w(layer)/obj.c_w_0)* (0.244 + 16.82* exp((-obj.nm-400)/80.5));
+            a_base = factor * (obj.c_w(layer)/obj.c_w_0)* (0.244 + 16.82* exp(-(obj.nm-400)/80.5));
         end
         
         
