@@ -1,22 +1,28 @@
 function launch_simulation_mcxyzn()
     clear all;
     
-    %Parameters for the simulation
-    photons = 100000;
-    dz = 0.001; %0.001;
-    dr = 0.001;
-    n_dr = 200; %1000;
-    n_dz = 800;
     %Transform parameters into sufficient values
     tissue = Tissue();
     coeff = tissue.makeTissueList('diastolic','normal');
-    coeff = coeff(1,:);
+    %coeff = coeff(1,:);
+    for i = 1:size(coeff,1)
+        simulation_per_freq(coeff(i,:));
+    end
+end
     
+function simulation_per_freq(coeff)
+
+    %Parameters for the simulation
+    photons = 100000;
+    dz = 0.001; 
+    n_dr = 200; %1000;
+    n_dz = 800;
     
     %%% Basic MC configuration %%%
     cfg.SAVEON = 1; % 1 = save myname_T.bin, myname_H.mci 
                     % 0 = don't save. Just check the program.
-    cfg.name = 'moco_params';
+    cfg.name = "data_files\outputs\mcxyzn\moco_params_d_n_"+coeff(1).nm;
+    %cfg.name = "moco_params_d_n_"+coeff(1).nm;
     cfg.time = 1;               %Simulation time in min
     
     cfg.binsize = dz;        %Length of a voxel
@@ -69,12 +75,13 @@ function launch_simulation_mcxyzn()
     
     radius = 50/2;
     center = [200,200,800]/2;
-    T_tc = make_circle(cfg,T_t,radius,center,3);
+    %T_tc = make_circle(cfg,T_t,radius,center,3);
     
-    cfg.T = T_tc;
+    cfg.T = T_t;
     
     disp('Tissue finished')
     create_simfiles(cfg);
+    %%
     launch_simulation(cfg);
     %[fluence] = plot_mcresults(cfg);
 
@@ -102,6 +109,7 @@ function T= make_tissue(cfg,T_,coeff,dz)
         end
     end
 end
+
 
 %einfügen eines zusätzlichen blutgefäß
 function T = make_circle(cfg,T_,radius_c,center,tissue_type)

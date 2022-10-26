@@ -8,147 +8,147 @@
 
 1.0                      	# file version
 8                        	# number of runs
-#### SPECIFY DATA FOR RUN 1 at lambda = 400
+#### SPECIFY DATA FOR RUN 1 at lambda = 470
 #InParm                    	# Input parameters. cm is used.
-data_files/outputs/sample_s_n_400.mco 	A            	# output file name, ASCII.
-100000	                  	    # No. of photons
+data_files/outputs/sample_s_n_470.mco 	A            	# output file name, ASCII.
+1000000	                  	    # No. of photons
 0.001000	0.001000               	# dz, dr [cm]
 773	1000	90                	# No. of dz, dr, da.
 
 6                        	# Number of layers
 #n	mua	mus	g	d         	# One line for each layer
 1                         	# n for medium above
-1.330000	0.105531	8.239204	0.900000	0.080000    	# layer 1
-1.370000	0.042991	10.985605	0.900000	0.015000    	# layer 2
-1.400000	0.046854	10.985605	0.900000	0.008000    	# layer 3
-1.400000	0.050416	10.985605	0.900000	0.120000    	# layer 4
-1.400000	0.047871	10.985605	0.900000	0.050000    	# layer 5
-1.440000	6.036205	5.492803	0.900000	0.500000    	# layer 6
+1.330000	0.386014	15.000000	0.900000	0.080000    	# layer 1
+1.370000	1.289460	20.000000	0.900000	0.015000    	# layer 2
+1.400000	1.282375	20.000000	0.900000	0.008000    	# layer 3
+1.400000	1.282080	20.000000	0.900000	0.120000    	# layer 4
+1.400000	1.279212	20.000000	0.900000	0.050000    	# layer 5
+1.440000	0.385913	10.000000	0.900000	0.500000    	# layer 6
 1                        	# n for medium below
 
-#### SPECIFY DATA FOR RUN 2 at lambda = 450
+#### SPECIFY DATA FOR RUN 2 at lambda = 530
 #InParm                    	# Input parameters. cm is used.
-data_files/outputs/sample_s_n_450.mco 	A            	# output file name, ASCII.
-100000	                  	    # No. of photons
+data_files/outputs/sample_s_n_530.mco 	A            	# output file name, ASCII.
+1000000	                  	    # No. of photons
 0.001000	0.001000               	# dz, dr [cm]
 773	1000	90                	# No. of dz, dr, da.
 
 6                        	# Number of layers
 #n	mua	mus	g	d         	# One line for each layer
 1                         	# n for medium above
-1.330000	0.101339	8.142729	0.900000	0.080000    	# layer 1
-1.370000	0.042979	10.856973	0.900000	0.015000    	# layer 2
-1.400000	0.048314	10.856973	0.900000	0.008000    	# layer 3
-1.400000	0.053242	10.856973	0.900000	0.120002    	# layer 4
-1.400000	0.049721	10.856973	0.900000	0.050001    	# layer 5
-1.440000	2.586644	5.428486	0.900000	0.500001    	# layer 6
+1.330000	0.214163	15.000000	0.900000	0.080000    	# layer 1
+1.370000	0.640732	20.000000	0.900000	0.015000    	# layer 2
+1.400000	0.633942	20.000000	0.900000	0.008000    	# layer 3
+1.400000	0.633664	20.000000	0.900000	0.120000    	# layer 4
+1.400000	0.630913	20.000000	0.900000	0.050000    	# layer 5
+1.440000	0.333218	10.000000	0.900000	0.500000    	# layer 6
 1                        	# n for medium below
 
-#### SPECIFY DATA FOR RUN 3 at lambda = 500
+#### SPECIFY DATA FOR RUN 3 at lambda = 660
 #InParm                    	# Input parameters. cm is used.
-data_files/outputs/sample_s_n_500.mco 	A            	# output file name, ASCII.
-100000	                  	    # No. of photons
+data_files/outputs/sample_s_n_660.mco 	A            	# output file name, ASCII.
+1000000	                  	    # No. of photons
 0.001000	0.001000               	# dz, dr [cm]
 773	1000	90                	# No. of dz, dr, da.
 
 6                        	# Number of layers
 #n	mua	mus	g	d         	# One line for each layer
 1                         	# n for medium above
-1.330000	0.099389	8.057388	0.900000	0.080000    	# layer 1
-1.370000	0.043061	10.743184	0.900000	0.015000    	# layer 2
-1.400000	0.049946	10.743184	0.900000	0.008000    	# layer 3
-1.400000	0.056294	10.743184	0.900000	0.120010    	# layer 4
-1.400000	0.051758	10.743184	0.900000	0.050004    	# layer 5
-1.440000	0.799549	5.371592	0.900000	0.500004    	# layer 6
+1.330000	0.114588	15.000000	0.900000	0.080000    	# layer 1
+1.370000	0.191343	20.000000	0.900000	0.015000    	# layer 2
+1.400000	0.175208	20.000000	0.900000	0.008000    	# layer 3
+1.400000	0.174563	20.000000	0.900000	0.120000    	# layer 4
+1.400000	0.167645	20.000000	0.900000	0.050000    	# layer 5
+1.440000	0.274441	10.000000	0.900000	0.500000    	# layer 6
 1                        	# n for medium below
 
-#### SPECIFY DATA FOR RUN 4 at lambda = 550
+#### SPECIFY DATA FOR RUN 4 at lambda = 770
 #InParm                    	# Input parameters. cm is used.
-data_files/outputs/sample_s_n_550.mco 	A            	# output file name, ASCII.
-100000	                  	    # No. of photons
+data_files/outputs/sample_s_n_770.mco 	A            	# output file name, ASCII.
+1000000	                  	    # No. of photons
 0.001000	0.001000               	# dz, dr [cm]
 773	1000	90                	# No. of dz, dr, da.
 
 6                        	# Number of layers
 #n	mua	mus	g	d         	# One line for each layer
 1                         	# n for medium above
-1.330000	0.098534	7.980957	0.900000	0.080000    	# layer 1
-1.370000	0.043247	10.641276	0.900000	0.015000    	# layer 2
-1.400000	0.049080	10.641276	0.900000	0.008000    	# layer 3
-1.400000	0.054464	10.641276	0.900000	0.120004    	# layer 4
-1.400000	0.050617	10.641276	0.900000	0.050002    	# layer 5
-1.440000	0.346001	5.320638	0.900000	0.500001    	# layer 6
+1.330000	0.104675	15.000000	0.900000	0.080000    	# layer 1
+1.370000	0.115491	20.000000	0.900000	0.015000    	# layer 2
+1.400000	0.099131	20.000000	0.900000	0.008000    	# layer 3
+1.400000	0.098461	20.000000	0.900000	0.120000    	# layer 4
+1.400000	0.091621	20.000000	0.900000	0.050000    	# layer 5
+1.440000	0.449092	10.000000	0.900000	0.500000    	# layer 6
 1                        	# n for medium below
 
-#### SPECIFY DATA FOR RUN 5 at lambda = 600
+#### SPECIFY DATA FOR RUN 5 at lambda = 810
 #InParm                    	# Input parameters. cm is used.
-data_files/outputs/sample_s_n_600.mco 	A            	# output file name, ASCII.
-100000	                  	    # No. of photons
+data_files/outputs/sample_s_n_810.mco 	A            	# output file name, ASCII.
+1000000	                  	    # No. of photons
 0.001000	0.001000               	# dz, dr [cm]
 773	1000	90                	# No. of dz, dr, da.
 
 6                        	# Number of layers
 #n	mua	mus	g	d         	# One line for each layer
 1                         	# n for medium above
-1.330000	0.098431	10.893908	0.900000	0.080000    	# layer 1
-1.370000	0.044417	14.525210	0.900000	0.015000    	# layer 2
-1.400000	0.054674	14.525210	0.900000	0.008001    	# layer 3
-1.400000	0.064165	14.525210	0.900000	0.120085    	# layer 4
-1.400000	0.057374	14.525210	0.900000	0.050035    	# layer 5
-1.440000	0.224711	7.262605	0.900000	0.500030    	# layer 6
+1.330000	0.152770	15.000000	0.900000	0.080000    	# layer 1
+1.370000	0.263942	20.000000	0.900000	0.015000    	# layer 2
+1.400000	0.247964	20.000000	0.900000	0.008000    	# layer 3
+1.400000	0.247297	20.000000	0.900000	0.120000    	# layer 4
+1.400000	0.240678	20.000000	0.900000	0.050000    	# layer 5
+1.440000	0.567863	10.000000	0.900000	0.500000    	# layer 6
 1                        	# n for medium below
 
-#### SPECIFY DATA FOR RUN 6 at lambda = 650
+#### SPECIFY DATA FOR RUN 6 at lambda = 940
 #InParm                    	# Input parameters. cm is used.
-data_files/outputs/sample_s_n_650.mco 	A            	# output file name, ASCII.
-100000	                  	    # No. of photons
+data_files/outputs/sample_s_n_940.mco 	A            	# output file name, ASCII.
+1000000	                  	    # No. of photons
 0.001000	0.001000               	# dz, dr [cm]
-775	1000	90                	# No. of dz, dr, da.
+773	1000	90                	# No. of dz, dr, da.
 
 6                        	# Number of layers
 #n	mua	mus	g	d         	# One line for each layer
 1                         	# n for medium above
-1.330000	0.098461	10.850396	0.900000	0.080000    	# layer 1
-1.370000	0.045295	14.467195	0.900000	0.015000    	# layer 2
-1.400000	0.060925	14.467195	0.900000	0.008017    	# layer 3
-1.400000	0.075092	14.467195	0.900000	0.120995    	# layer 4
-1.400000	0.064918	14.467195	0.900000	0.050411    	# layer 5
-1.440000	0.228169	7.233597	0.900000	0.500358    	# layer 6
+1.330000	0.169838	15.000000	0.900000	0.080000    	# layer 1
+1.370000	0.307232	20.000000	0.900000	0.015000    	# layer 2
+1.400000	0.292512	20.000000	0.900000	0.008000    	# layer 3
+1.400000	0.291894	20.000000	0.900000	0.120000    	# layer 4
+1.400000	0.285860	20.000000	0.900000	0.050000    	# layer 5
+1.440000	0.593550	10.000000	0.900000	0.500000    	# layer 6
 1                        	# n for medium below
 
-#### SPECIFY DATA FOR RUN 7 at lambda = 700
+#### SPECIFY DATA FOR RUN 7 at lambda = 1020
 #InParm                    	# Input parameters. cm is used.
-data_files/outputs/sample_s_n_700.mco 	A            	# output file name, ASCII.
-100000	                  	    # No. of photons
+data_files/outputs/sample_s_n_1020.mco 	A            	# output file name, ASCII.
+1000000	                  	    # No. of photons
 0.001000	0.001000               	# dz, dr [cm]
-776	1000	90                	# No. of dz, dr, da.
+773	1000	90                	# No. of dz, dr, da.
 
 6                        	# Number of layers
 #n	mua	mus	g	d         	# One line for each layer
 1                         	# n for medium above
-1.330000	0.098933	10.810265	0.900000	0.080000    	# layer 1
-1.370000	0.047172	14.413687	0.900000	0.015000    	# layer 2
-1.400000	0.063741	14.413687	0.900000	0.008026    	# layer 3
-1.400000	0.078531	14.413687	0.900000	0.121491    	# layer 4
-1.400000	0.067890	14.413687	0.900000	0.050620    	# layer 5
-1.440000	0.169426	7.206844	0.900000	0.500543    	# layer 6
+1.330000	0.201671	15.000000	0.900000	0.080000    	# layer 1
+1.370000	0.409491	20.000000	0.900000	0.015000    	# layer 2
+1.400000	0.394500	20.000000	0.900000	0.008000    	# layer 3
+1.400000	0.393865	20.000000	0.900000	0.120000    	# layer 4
+1.400000	0.387716	20.000000	0.900000	0.050000    	# layer 5
+1.440000	0.086828	10.000000	0.900000	0.500000    	# layer 6
 1                        	# n for medium below
 
-#### SPECIFY DATA FOR RUN 8 at lambda = 725
+#### SPECIFY DATA FOR RUN 8 at lambda = 1050
 #InParm                    	# Input parameters. cm is used.
-data_files/outputs/sample_s_n_725.mco 	A            	# output file name, ASCII.
-100000	                  	    # No. of photons
+data_files/outputs/sample_s_n_1050.mco 	A            	# output file name, ASCII.
+1000000	                  	    # No. of photons
 0.001000	0.001000               	# dz, dr [cm]
-775	1000	90                	# No. of dz, dr, da.
+773	1000	90                	# No. of dz, dr, da.
 
 6                        	# Number of layers
 #n	mua	mus	g	d         	# One line for each layer
 1                         	# n for medium above
-1.330000	0.100636	10.791315	0.900000	0.080000    	# layer 1
-1.370000	0.052796	14.388420	0.900000	0.015000    	# layer 2
-1.400000	0.068979	14.388420	0.900000	0.008022    	# layer 3
-1.400000	0.083452	14.388420	0.900000	0.121243    	# layer 4
-1.400000	0.073016	14.388420	0.900000	0.050517    	# layer 5
-1.440000	0.206308	7.194210	0.900000	0.500454    	# layer 6
+1.330000	0.274645	15.000000	0.900000	0.080000    	# layer 1
+1.370000	0.647957	20.000000	0.900000	0.015000    	# layer 2
+1.400000	0.632115	20.000000	0.900000	0.008000    	# layer 3
+1.400000	0.631439	20.000000	0.900000	0.120000    	# layer 4
+1.400000	0.624915	20.000000	0.900000	0.050000    	# layer 5
+1.440000	0.661702	10.000000	0.900000	0.500000    	# layer 6
 1                        	# n for medium below
 

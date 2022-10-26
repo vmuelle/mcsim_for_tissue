@@ -10,7 +10,7 @@ function launch_simulation_mcml()
     
     
     %set parameters for simulation 
-    photons = 10000000;             %no of photons
+    photons = 1000000;             %no of photons
     dz = 0.001;                   %separation between grid lines (cm) in z direction                                                                                                                                                                 
     dr = 0.001;                   %separation between grid lines (cm) in r direction
     n_dr = 1000;                  %no of grid elements in r direction        

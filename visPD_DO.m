@@ -95,6 +95,8 @@ function [PD DO] = pd_do(mcml_data_d,mcml_data_s,PLOTON,lambda)
     %    end
     %end
     Fz = mcml_data_d.Fz;
+    %Fz = Fz-min(Fz);
+    Fz = Fz./max(Fz);
     PD_threshold = 0.632* sum(Fz);
     Fz_sum = 0;
     for depth = 1:size(Fz)
@@ -165,8 +167,8 @@ function [PD DO] = pd_do(mcml_data_d,mcml_data_s,PLOTON,lambda)
         %plot([DO DO],[0 1],'DisplayName','DO');
         hold off 
         legend
-        xlabel('Flux')
-        ylabel('PD in cm')
+        xlabel('depth (grid elements)')
+        ylabel('Flux F/max(F)')
         %set(gca, 'YDir','reverse');
         %view([90 -90])
         if(size(mcml_data_d.d) == 6)
