@@ -91,8 +91,8 @@ classdef Tissue
                     tissue(i).n = n(i);
                     tissue(i).d = obj.d(i);
                     tissue(i).g = obj.anisotrophy;
-                    tissue(i).mus = obj.sc(i);
-                    %tissue(i).mus = obj.scattering(i);
+                    %tissue(i).mus = obj.sc(i);
+                    tissue(i).mus = obj.scattering(i);
                 end
                 
                  tissue(1).mua = obj.absorption_first_layer();
@@ -128,8 +128,8 @@ classdef Tissue
                     tissue(i).n = n(i);
                     tissue(i).d = obj.d(i);
                     tissue(i).g = obj.anisotrophy;
-                    tissue(i).mus = obj.sc(i);
-                    %tissue(i).mus = obj.scattering(i);
+                    %tissue(i).mus = obj.sc(i);
+                    tissue(i).mus = obj.scattering(i);
                 end
                 
                 tissue(1).mua = obj.absorption_first_layer();

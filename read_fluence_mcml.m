@@ -1,5 +1,5 @@
-close all;
-clear all;
+%close all;
+%clear all;
 
 
 
@@ -59,7 +59,7 @@ xlabel('wavelength [nm]')
 ylabel('PD')
 axis([lambda(1) lambda(end) 0 Fz_size*mcml_data_d.dz])
 set(gca, 'YDir','reverse');
-if(size(mcml_data_d.d) == 6)
+if(length(mcml_data_d.d) == 6)
     title("Penetration Depth and Depth Origin for normal skin")
 else
     title("Penetration Depth and Depth Origin for compressed skin")
@@ -95,8 +95,24 @@ function [PD DO] = pd_do(mcml_data_d,mcml_data_s,PLOTON,lambda)
     %    end
     %end
     Fz = mcml_data_d.Fz;
+    layer_boundarys = mcml_data_d.d./mcml_data_d.dz;
+    for i = 2:size(layer_boundarys)
+        layer_boundarys(i) = layer_boundarys(i) +layer_boundarys(i-1);
+    end
+    for i = 1:length(layer_boundarys)-1
+        Fz(layer_boundarys(i))
+        Fz(layer_boundarys(i)-1)
+        if Fz(layer_boundarys(i)) > Fz(layer_boundarys(i)-1)
+            difference = max(Fz(layer_boundarys(i):layer_boundarys(i)+10))-Fz(layer_boundarys(i)-1);
+            Fz(layer_boundarys(i):end) = Fz(layer_boundarys(i):end)-difference;
+        end
+    end
+
+
+
+
     %Fz = Fz-min(Fz);
-    Fz = Fz./max(Fz);
+    %Fz = Fz./max(Fz);
     PD_threshold = 0.632* sum(Fz);
     Fz_sum = 0;
     for depth = 1:size(Fz)
@@ -153,7 +169,7 @@ function [PD DO] = pd_do(mcml_data_d,mcml_data_s,PLOTON,lambda)
     if PLOTON
         f   = linspace(0,size(Fz,1),size(Fz,1));
         figure
-        F_pd_plot = Fz/max(Fz);
+        F_pd_plot = Fz;%/max(Fz);
         %plot(f,F_pd_plot,[PD PD],[0 1])
         %PD_plot = PD/size(Fz,1);
         %DO_plot = DO/size(delta_Fz,1);

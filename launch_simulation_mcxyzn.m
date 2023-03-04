@@ -6,11 +6,26 @@ function launch_simulation_mcxyzn()
     coeff = tissue.makeTissueList('diastolic','normal');
     %coeff = coeff(1,:);
     for i = 1:size(coeff,1)
-        simulation_per_freq(coeff(i,:));
+        simulation_per_freq(coeff(i,:),'d','n');
+    end
+    coeff = tissue.makeTissueList('diastolic','compressed');
+    %coeff = coeff(1,:);
+    for i = 1:size(coeff,1)
+        simulation_per_freq(coeff(i,:),'d','c');
+    end
+    coeff = tissue.makeTissueList('systolic','normal');
+    %coeff = coeff(1,:);
+    for i = 1:size(coeff,1)
+        simulation_per_freq(coeff(i,:),'s','n');
+    end
+    coeff = tissue.makeTissueList('systolic','compressed');
+    %coeff = coeff(1,:);
+    for i = 1:size(coeff,1)
+        simulation_per_freq(coeff(i,:),'s','c');
     end
 end
     
-function simulation_per_freq(coeff)
+function simulation_per_freq(coeff,d_s,c_n)
 
     %Parameters for the simulation
     photons = 100000;
@@ -21,7 +36,7 @@ function simulation_per_freq(coeff)
     %%% Basic MC configuration %%%
     cfg.SAVEON = 1; % 1 = save myname_T.bin, myname_H.mci 
                     % 0 = don't save. Just check the program.
-    cfg.name = "data_files\outputs\mcxyzn\moco_params_d_n_"+coeff(1).nm;
+    cfg.name = "data_files\outputs\mcxyzn\moco_params_"+d_s+"_"+c_n+"_"+coeff(1).nm;
     %cfg.name = "moco_params_d_n_"+coeff(1).nm;
     cfg.time = 1;               %Simulation time in min
     
@@ -62,8 +77,8 @@ function simulation_per_freq(coeff)
     for layer = 1:(cfg.Nt)    
         cfg.muav = [cfg.muav coeff(layer).mua];
         cfg.musv = [cfg.musv coeff(layer).mus];
-        cfg.gv   = [cfg.muav coeff(layer).g];
-        cfg.nv   = [cfg.muav coeff(layer).n];
+        cfg.gv   = [cfg.gv coeff(layer).g];
+        cfg.nv   = [cfg.nv coeff(layer).n];
     end
     
     %%% Setting up simulation volume %%% 
@@ -100,8 +115,10 @@ function T= make_tissue(cfg,T_,coeff,dz)
                     end
                     if(iz<cast(sum_d/dz,'uint32'))
                         T(i,j,iz) = lay;
-                    else 
-                        lay = lay+1;
+                    else
+                        if(lay ~= length(coeff))    
+                            lay = lay+1;
+                        end
                         T(i,j,iz) = lay;
                     end
                 end

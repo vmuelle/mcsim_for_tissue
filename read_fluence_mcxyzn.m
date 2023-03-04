@@ -1,16 +1,25 @@
-clear all;
-close all;
+function read_fluence_mcxyzn()
+    freq = [470,530,660,770,810,940,1020,1050];
+    j = 1;
+    PD = zeros(length(freq),1);
+    for i = freq
+        Fz = getfluence(i,'n');
+        PD(j) = getPD(Fz);
+        j=j+1;
+    end
+    make_plot(PD,freq,'n');
 
-freq = [470,530,660,770,810,940,1020,1050];
-j = 1;
-PD = zeros(length(freq));
-for i = freq
-    Fz = getfluence(i);
-    PD(j) = getPD(Fz);
-    j=j+1;
+    j = 1;
+    PD = zeros(length(freq),1);
+    for i = freq
+        Fz = getfluence(i,'c');
+        PD(j) = getPD(Fz);
+        j=j+1;
+    end
+    make_plot(PD,freq,'c');
+
+    
 end
-make_plot(PD,freq);
-
 
 function PD = getPD(Fz)
     PD_threshold = 0.632* sum(Fz);
@@ -24,25 +33,39 @@ function PD = getPD(Fz)
     end
 end
 
-function make_plot(PD,lambda)
+function make_plot(PD,lambda,n_c)
     figure
-    mcml_data_d = Readmcml("data_files/outputs/sample_d_n_470.mco");
+    hold on
+    filename = "data_files/outputs/sample_d_"+n_c+"_470.mco";
+    mcml_data_d = Readmcml(filename);
+    Fz_size = size(mcml_data_d.Fz,1);
+    PD = PD./800;
+    plot(lambda,PD,'DisplayName','PD')
+
     depth = 0;
     for i = 1:size(mcml_data_d.d)
         depth = depth + mcml_data_d.d(i); 
         name = sprintf('Layer %d', i);
         plot([lambda(1) lambda(end)],[depth depth],'DisplayName',name);
-        hold on
     end
-    PD = PD./800;
-    plot(lambda,PD)
+    xlabel('wavelength [nm]')
+    ylabel('PD')
+    axis([lambda(1) lambda(end) 0 Fz_size*mcml_data_d.dz])
     set(gca, 'YDir','reverse');
+    if(length(mcml_data_d.d) == 6)
+        title("Penetration Depth and Depth Origin for normal skin mcxyzn")
+    else
+        title("Penetration Depth and Depth Origin for compressed skin mcxyzn")
+    end
+    hold off
+    legend
+
 end
 
 
 
-function Fz = getfluence(i)
-    name = strcat('data_files/outputs/mcxyzn/moco_params_d_n_',num2str(i,'%d'));
+function Fz = getfluence(i,n_c)
+    name = strcat('data_files/outputs/mcxyzn/moco_params_d_',n_c,'_',num2str(i,'%d'));
     
     filename = sprintf('%s_H.mci',name);
     disp(['loading ' filename])

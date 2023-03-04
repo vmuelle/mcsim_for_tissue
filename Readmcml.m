@@ -1,12 +1,12 @@
 classdef Readmcml < handle
     properties(Access = private)
         A; Al; Azr; Fzr; Na; Nc; Nlayers; 
-        Nr; Nz; Rd; Ra; Rr; Rra; Rsp; T; Ta; Td; Tr; Tra; dr; 
+        Nr; Rd; Ra; Rr; Rra; Rsp; T; Ta; Td; Tr; Tra; dr; 
         g; mua; mus; n; nabove; nbelow; r; z;
         rm; Azrm; Fzrm;
     end
     properties(Access = public)
-        Az;Fz;d;dz;
+        Az;Fz;d;dz;Nz;
     end
     methods
         function obj = Readmcml(name)
