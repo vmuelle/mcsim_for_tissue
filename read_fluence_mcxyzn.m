@@ -1,9 +1,9 @@
-function read_fluence_mcxyzn()
+function read_fluence_mcxyzn(PLOTON)
     freq = [470,530,660,770,810,940,1020,1050];
     j = 1;
     PD = zeros(length(freq),1);
     for i = freq
-        Fz = getfluence(i,'n');
+        Fz = getfluence(i,'n',PLOTON);
         PD(j) = getPD(Fz);
         j=j+1;
     end
@@ -12,7 +12,7 @@ function read_fluence_mcxyzn()
     j = 1;
     PD = zeros(length(freq),1);
     for i = freq
-        Fz = getfluence(i,'c');
+        Fz = getfluence(i,'c',PLOTON);
         PD(j) = getPD(Fz);
         j=j+1;
     end
@@ -64,11 +64,11 @@ end
 
 
 
-function Fz = getfluence(i,n_c)
+function Fz = getfluence(i,n_c,PLOTON)
     name = strcat('data_files/outputs/mcxyzn/moco_params_d_',n_c,'_',num2str(i,'%d'));
     
     filename = sprintf('%s_H.mci',name);
-    disp(['loading ' filename])
+    %disp(['loading ' filename])
     fid = fopen(filename, 'r');
     A = fscanf(fid,'%f',[1 Inf])';
     fclose(fid);
@@ -79,7 +79,7 @@ function Fz = getfluence(i,n_c)
     
     %% Load Fluence rate F(x,y,z) 
     filename = sprintf('%s_F.bin',name);
-    disp(['loading ' filename])
+    %disp(['loading ' filename])
     tic
         fid = fopen(filename, 'rb');
         [Data count] = fread(fid, Nx*Ny*Nz, 'float');
@@ -91,6 +91,8 @@ function Fz = getfluence(i,n_c)
         Fz(i) = sum(sum(F(:,:,i)));
     end
     x = [0:1:800-1];
+    if(PLOTON)
     figure
     plot(x,Fz);
+    end
 end

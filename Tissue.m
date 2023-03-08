@@ -176,8 +176,8 @@ classdef Tissue
         function afl =  absorption_first_layer(obj)
         %function afl =  absorption_first_layer()
         % Returns the absorption coefficient 'afl' for first layer (epidermis)
-        
-            mua_base_epi = 0.5*(0.244+(85.3*exp(-(obj.nm-154)/66.2)));
+   
+            mua_base_epi = 0.5*(0.244+85.3*exp(-(obj.nm-154)/66.2));
             afl = (obj.c_w(1)*obj.absorption_water) + (1-obj.c_w(1)) * mua_base_epi; 
         end
                 

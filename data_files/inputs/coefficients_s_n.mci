@@ -17,14 +17,14 @@ data_files/outputs/sample_s_n_470.mco 	A            	# output file name, ASCII.
 
 6                        	# Number of layers
 #n	mua	mus	g	d         	# One line for each layer
-1                         	# n for medium above
-1.330000	0.386014	15.000000	0.900000	0.080000    	# layer 1
-1.370000	1.289460	20.000000	0.900000	0.015000    	# layer 2
-1.400000	1.282375	20.000000	0.900000	0.008000    	# layer 3
-1.400000	1.282080	20.000000	0.900000	0.120000    	# layer 4
-1.400000	1.279212	20.000000	0.900000	0.050000    	# layer 5
-1.440000	0.385913	10.000000	0.900000	0.500000    	# layer 6
-1                        	# n for medium below
+1.0                         	# n for medium above
+1.330000	0.386014	8.107398	0.900000	0.080000    	# layer 1
+1.370000	1.289460	10.809863	0.900000	0.015000    	# layer 2
+1.400000	1.282375	10.809863	0.900000	0.008000    	# layer 3
+1.400000	1.282080	10.809863	0.900000	0.120000    	# layer 4
+1.400000	1.279212	10.809863	0.900000	0.050000    	# layer 5
+1.440000	0.385913	5.404932	0.900000	0.500000    	# layer 6
+1.0                        	# n for medium below
 
 #### SPECIFY DATA FOR RUN 2 at lambda = 530
 #InParm                    	# Input parameters. cm is used.
@@ -35,14 +35,14 @@ data_files/outputs/sample_s_n_530.mco 	A            	# output file name, ASCII.
 
 6                        	# Number of layers
 #n	mua	mus	g	d         	# One line for each layer
-1                         	# n for medium above
-1.330000	0.214163	15.000000	0.900000	0.080000    	# layer 1
-1.370000	0.640732	20.000000	0.900000	0.015000    	# layer 2
-1.400000	0.633942	20.000000	0.900000	0.008000    	# layer 3
-1.400000	0.633664	20.000000	0.900000	0.120000    	# layer 4
-1.400000	0.630913	20.000000	0.900000	0.050000    	# layer 5
-1.440000	0.333218	10.000000	0.900000	0.500000    	# layer 6
-1                        	# n for medium below
+1.0                         	# n for medium above
+1.330000	0.214163	8.010575	0.900000	0.080000    	# layer 1
+1.370000	0.640732	10.680766	0.900000	0.015000    	# layer 2
+1.400000	0.633942	10.680766	0.900000	0.008000    	# layer 3
+1.400000	0.633664	10.680766	0.900000	0.120000    	# layer 4
+1.400000	0.630913	10.680766	0.900000	0.050000    	# layer 5
+1.440000	0.333218	5.340383	0.900000	0.500000    	# layer 6
+1.0                        	# n for medium below
 
 #### SPECIFY DATA FOR RUN 3 at lambda = 660
 #InParm                    	# Input parameters. cm is used.
@@ -53,14 +53,14 @@ data_files/outputs/sample_s_n_660.mco 	A            	# output file name, ASCII.
 
 6                        	# Number of layers
 #n	mua	mus	g	d         	# One line for each layer
-1                         	# n for medium above
-1.330000	0.114588	15.000000	0.900000	0.080000    	# layer 1
-1.370000	0.191343	20.000000	0.900000	0.015000    	# layer 2
-1.400000	0.175208	20.000000	0.900000	0.008000    	# layer 3
-1.400000	0.174563	20.000000	0.900000	0.120000    	# layer 4
-1.400000	0.167645	20.000000	0.900000	0.050000    	# layer 5
-1.440000	0.274441	10.000000	0.900000	0.500000    	# layer 6
-1                        	# n for medium below
+1.0                         	# n for medium above
+1.330000	0.114588	10.842116	0.900000	0.080000    	# layer 1
+1.370000	0.191343	14.456155	0.900000	0.015000    	# layer 2
+1.400000	0.175208	14.456155	0.900000	0.008000    	# layer 3
+1.400000	0.174563	14.456155	0.900000	0.120000    	# layer 4
+1.400000	0.167645	14.456155	0.900000	0.050000    	# layer 5
+1.440000	0.274441	7.228078	0.900000	0.500000    	# layer 6
+1.0                        	# n for medium below
 
 #### SPECIFY DATA FOR RUN 4 at lambda = 770
 #InParm                    	# Input parameters. cm is used.
@@ -71,14 +71,14 @@ data_files/outputs/sample_s_n_770.mco 	A            	# output file name, ASCII.
 
 6                        	# Number of layers
 #n	mua	mus	g	d         	# One line for each layer
-1                         	# n for medium above
-1.330000	0.104675	15.000000	0.900000	0.080000    	# layer 1
-1.370000	0.115491	20.000000	0.900000	0.015000    	# layer 2
-1.400000	0.099131	20.000000	0.900000	0.008000    	# layer 3
-1.400000	0.098461	20.000000	0.900000	0.120000    	# layer 4
-1.400000	0.091621	20.000000	0.900000	0.050000    	# layer 5
-1.440000	0.449092	10.000000	0.900000	0.500000    	# layer 6
-1                        	# n for medium below
+1.0                         	# n for medium above
+1.330000	0.104675	10.758872	0.900000	0.080000    	# layer 1
+1.370000	0.115491	14.345162	0.900000	0.015000    	# layer 2
+1.400000	0.099131	14.345162	0.900000	0.008000    	# layer 3
+1.400000	0.098461	14.345162	0.900000	0.120000    	# layer 4
+1.400000	0.091621	14.345162	0.900000	0.050000    	# layer 5
+1.440000	0.449092	7.172581	0.900000	0.500000    	# layer 6
+1.0                        	# n for medium below
 
 #### SPECIFY DATA FOR RUN 5 at lambda = 810
 #InParm                    	# Input parameters. cm is used.
@@ -89,14 +89,14 @@ data_files/outputs/sample_s_n_810.mco 	A            	# output file name, ASCII.
 
 6                        	# Number of layers
 #n	mua	mus	g	d         	# One line for each layer
-1                         	# n for medium above
-1.330000	0.152770	15.000000	0.900000	0.080000    	# layer 1
-1.370000	0.263942	20.000000	0.900000	0.015000    	# layer 2
-1.400000	0.247964	20.000000	0.900000	0.008000    	# layer 3
-1.400000	0.247297	20.000000	0.900000	0.120000    	# layer 4
-1.400000	0.240678	20.000000	0.900000	0.050000    	# layer 5
-1.440000	0.567863	10.000000	0.900000	0.500000    	# layer 6
-1                        	# n for medium below
+1.0                         	# n for medium above
+1.330000	0.152770	10.731663	0.900000	0.080000    	# layer 1
+1.370000	0.263942	14.308883	0.900000	0.015000    	# layer 2
+1.400000	0.247964	14.308883	0.900000	0.008000    	# layer 3
+1.400000	0.247297	14.308883	0.900000	0.120000    	# layer 4
+1.400000	0.240678	14.308883	0.900000	0.050000    	# layer 5
+1.440000	0.567863	7.154442	0.900000	0.500000    	# layer 6
+1.0                        	# n for medium below
 
 #### SPECIFY DATA FOR RUN 6 at lambda = 940
 #InParm                    	# Input parameters. cm is used.
@@ -107,14 +107,14 @@ data_files/outputs/sample_s_n_940.mco 	A            	# output file name, ASCII.
 
 6                        	# Number of layers
 #n	mua	mus	g	d         	# One line for each layer
-1                         	# n for medium above
-1.330000	0.169838	15.000000	0.900000	0.080000    	# layer 1
-1.370000	0.307232	20.000000	0.900000	0.015000    	# layer 2
-1.400000	0.292512	20.000000	0.900000	0.008000    	# layer 3
-1.400000	0.291894	20.000000	0.900000	0.120000    	# layer 4
-1.400000	0.285860	20.000000	0.900000	0.050000    	# layer 5
-1.440000	0.593550	10.000000	0.900000	0.500000    	# layer 6
-1                        	# n for medium below
+1.0                         	# n for medium above
+1.330000	0.169838	10.652091	0.900000	0.080000    	# layer 1
+1.370000	0.307232	14.202788	0.900000	0.015000    	# layer 2
+1.400000	0.292512	14.202788	0.900000	0.008000    	# layer 3
+1.400000	0.291894	14.202788	0.900000	0.120000    	# layer 4
+1.400000	0.285860	14.202788	0.900000	0.050000    	# layer 5
+1.440000	0.593550	7.101394	0.900000	0.500000    	# layer 6
+1.0                        	# n for medium below
 
 #### SPECIFY DATA FOR RUN 7 at lambda = 1020
 #InParm                    	# Input parameters. cm is used.
@@ -125,14 +125,14 @@ data_files/outputs/sample_s_n_1020.mco 	A            	# output file name, ASCII.
 
 6                        	# Number of layers
 #n	mua	mus	g	d         	# One line for each layer
-1                         	# n for medium above
-1.330000	0.201671	15.000000	0.900000	0.080000    	# layer 1
-1.370000	0.409491	20.000000	0.900000	0.015000    	# layer 2
-1.400000	0.394500	20.000000	0.900000	0.008000    	# layer 3
-1.400000	0.393865	20.000000	0.900000	0.120000    	# layer 4
-1.400000	0.387716	20.000000	0.900000	0.050000    	# layer 5
-1.440000	0.086828	10.000000	0.900000	0.500000    	# layer 6
-1                        	# n for medium below
+1.0                         	# n for medium above
+1.330000	0.201671	10.608678	0.900000	0.080000    	# layer 1
+1.370000	0.409491	14.144903	0.900000	0.015000    	# layer 2
+1.400000	0.394500	14.144903	0.900000	0.008000    	# layer 3
+1.400000	0.393865	14.144903	0.900000	0.120000    	# layer 4
+1.400000	0.387716	14.144903	0.900000	0.050000    	# layer 5
+1.440000	0.086828	7.072452	0.900000	0.500000    	# layer 6
+1.0                        	# n for medium below
 
 #### SPECIFY DATA FOR RUN 8 at lambda = 1050
 #InParm                    	# Input parameters. cm is used.
@@ -143,12 +143,12 @@ data_files/outputs/sample_s_n_1050.mco 	A            	# output file name, ASCII.
 
 6                        	# Number of layers
 #n	mua	mus	g	d         	# One line for each layer
-1                         	# n for medium above
-1.330000	0.274645	15.000000	0.900000	0.080000    	# layer 1
-1.370000	0.647957	20.000000	0.900000	0.015000    	# layer 2
-1.400000	0.632115	20.000000	0.900000	0.008000    	# layer 3
-1.400000	0.631439	20.000000	0.900000	0.120000    	# layer 4
-1.400000	0.624915	20.000000	0.900000	0.050000    	# layer 5
-1.440000	0.661702	10.000000	0.900000	0.500000    	# layer 6
-1                        	# n for medium below
+1.0                         	# n for medium above
+1.330000	0.274645	10.593313	0.900000	0.080000    	# layer 1
+1.370000	0.647957	14.124417	0.900000	0.015000    	# layer 2
+1.400000	0.632115	14.124417	0.900000	0.008000    	# layer 3
+1.400000	0.631439	14.124417	0.900000	0.120000    	# layer 4
+1.400000	0.624915	14.124417	0.900000	0.050000    	# layer 5
+1.440000	0.661702	7.062208	0.900000	0.500000    	# layer 6
+1.0                        	# n for medium below
 

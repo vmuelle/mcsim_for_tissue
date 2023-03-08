@@ -1,14 +1,14 @@
 %close all;
 %clear all;
 
-
+function read_fluence_mcml_chatterjee(PLOTON)
 
 %%%%
 %This file visualizes the penetretion-depth (PD) and depth-origin (DO) of
 %light in skin tissue. The outputfiles of MCML are used for this. 
 %%%%
 
-PLOTON = 1;%If PLOTON = 1, the Flux curves are shown for each input file. If PLOTON = 0 only the final plot over all Wavelength is shown.
+%PLOTON = 1;%If PLOTON = 1, the Flux curves are shown for each input file. If PLOTON = 0 only the final plot over all Wavelength is shown.
 PD = zeros(1,8); % Parameter for penetration-depth
 %lambda = [400 450 500 550 600 650 700 750 800 850 900 950 1000]; % wavelenght
 lambda = [470 530 660 770 810 940 1020 1050];
@@ -23,13 +23,7 @@ for i = 1:size(lambda,2)
 end
 make_figure(PD,mcml_data,lambda);
 
-
-%for i = 1:size(lambda,2)
-%    mcml_data_d = Readmcml("data_files/outputs/chatterjee_" + lambda(i) + ".mco");
-%    [PD_c(i),DO_c(i)] = pd_do(mcml_data_d,mcml_data_d,PLOTON,lambda(i));
-%end
-%make_figure(PD_c,DO_c,mcml_data_d,lambda);
-%% 
+end
 
 
 function make_figure(PD,mcml_data_d,lambda)
@@ -90,8 +84,8 @@ function PD  = pd_do(mcml_data_d,PLOTON,lambda)
         layer_boundarys(i) = layer_boundarys(i) +layer_boundarys(i-1);
     end
     for i = 1:length(layer_boundarys)-1
-        Fz(layer_boundarys(i))
-        Fz(layer_boundarys(i)-1)
+        %Fz(layer_boundarys(i))
+        %Fz(layer_boundarys(i)-1)
         if Fz(layer_boundarys(i)) > Fz(layer_boundarys(i)-1)
             difference = max(Fz(layer_boundarys(i):layer_boundarys(i)+10))-Fz(layer_boundarys(i)-1);
             Fz(layer_boundarys(i):end) = Fz(layer_boundarys(i):end)-difference;
