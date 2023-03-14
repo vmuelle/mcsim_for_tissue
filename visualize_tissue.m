@@ -1,6 +1,6 @@
-function visualize_tissue()
+function visualize_tissue(d_s,n_c)
    tissue = Tissue();
-   tl = tissue.makeTissueList('diastolic','normal');
+   tl = tissue.makeTissueList(d_s,n_c);
 
    figure
    hold on
@@ -25,28 +25,3 @@ function visualize_tissue()
    legend
 end
 
-function make_figure(PD,mcml_data_d,lambda)
-%make figure with all skin Layers and the PD DO plot
-    figure
-    hold on
-    Fz_size = size(mcml_data_d.Fz,1);
-    PD = PD.*mcml_data_d.dz;
-    plot(lambda,PD,'DisplayName','PD');
-    depth = 0;
-    for i = 1:size(mcml_data_d.d)
-        depth = depth + mcml_data_d.d(i); 
-        name = sprintf('Layer %d', i);
-        plot([lambda(1) lambda(end)],[depth depth],'DisplayName',name);
-    end
-    xlabel('wavelength [nm]')
-    ylabel('PD')
-    axis([lambda(1) lambda(end) 0 Fz_size*mcml_data_d.dz])
-    set(gca, 'YDir','reverse');
-    if(length(mcml_data_d.d) == 6)
-        title("Penetration Depth and Depth Origin for normal skin")
-    else
-        title("Penetration Depth and Depth Origin for compressed skin")
-    end
-    hold off
-    legend
-end

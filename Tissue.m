@@ -77,6 +77,7 @@ classdef Tissue
                 obj.c_w = [0.2 0.65 0.65 0.65 0.65 0.05];   %concentration of water
                 obj.c_f = [0 0 0 0 0 0.4];                  %concentration of fat
                 obj.v_d = [0 10 20 20 40 50];               %vessel diameters
+                obj.v_d = obj.v_d.*10e-4;
                 obj.sc = [15 20 20 20 20 10];               %scattering calibration constant
                 obj.ratio_a_nv = [0 0.5 0.5 0.5 0.5 0.5];   %ratio aterial blood (not venious)
                 
@@ -101,7 +102,7 @@ classdef Tissue
                     if(strcmp(d_,'diastolic'))
                         tissue(i).mua = obj.absorption_diastolic_state(i);
                     elseif(strcmp(d_,'systolic'))
-                        tissue(i).mua = obj.absorption_systolic_state(i);
+                        [tissue(i).mua, tissue(i).d] = obj.absorption_systolic_state(i);
                     else 
                         error('wrong input paramter for d_')
                     end
@@ -138,7 +139,7 @@ classdef Tissue
                     if(strcmp(d_,'diastolic'))
                         tissue(i).mua = obj.absorption_diastolic_state(i);
                     elseif(strcmp(d_,'systolic'))
-                        tissue(i).mua = obj.absorption_systolic_state(i);
+                        [tissue(i).mua, tissue(i).d] = obj.absorption_systolic_state(i);
                     else
                         error('wrong input parameter for d_')
                     end
@@ -214,7 +215,7 @@ classdef Tissue
         end
         
         
-        function mua = absorption_systolic_state(obj,layer)
+        function [mua,d_s] = absorption_systolic_state(obj,layer)
         %function mua = absorption_systolic_state(layer)
         % Returns the absorption coefficient 'mua' for a given 'layer' WITH blood in systolic state
         
