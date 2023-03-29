@@ -31,7 +31,11 @@ function simulation_per_freq(coeff,d_s,c_n)
     photons = 100000;
     dz = 0.001; 
     n_dr = 200; %1000;
-    n_dz = 800;
+    n_dz = 800; 
+    n_dz = 0;
+    for i = 1:size(coeff,2)
+        n_dz = n_dz + coeff(i).d/dz;
+    end
     
     %%% Basic MC configuration %%%
     cfg.SAVEON = 1; % 1 = save myname_T.bin, myname_H.mci 
