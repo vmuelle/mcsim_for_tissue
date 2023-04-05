@@ -1,0 +1,27 @@
+##########################################
+# coefficients_d_n.mci
+# 	This is an input files for MCM
+#	Lengths are in cm, mua and mus are in 1/cm.
+#
+#	Multiple runs are stipulated.
+##########################################
+
+1.0                      	# file version
+8                        	# number of runs
+#### SPECIFY DATA FOR RUN 1 at lambda = 400
+#InParm                    	# Input parameters. cm is used.
+data_files/outputs/sample_d_n_400.mco 	A            	# output file name, ASCII.
+100000	                  	    # No. of photons
+0.001000	0.001000               	# dz, dr [cm]
+773	1000	90                	# No. of dz, dr, da.
+
+6                        	# Number of layers
+#n	mua	mus	g	d         	# One line for each layer
+1                         	# n for medium above
+1.330000	4.07	15.000000	0.900000	0.080000    	# layer 1
+1.370000	0.036	20.000000	0.900000	0.015000    	# layer 2
+1.400000	0.09	20.000000	0.900000	0.008000    	# layer 3
+1.400000	0.026	20.000000	0.900000	0.120000    	# layer 4
+1.400000	0.04	20.000000	0.900000	0.050000    	# layer 5
+1.440000	11.4	10.000000	0.900000	0.500000    	# layer 6
+1                        	# n for medium below
