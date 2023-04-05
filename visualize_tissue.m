@@ -1,6 +1,6 @@
-function visualize_tissue(d_s,n_c)
+function visualize_tissue(d_s,n_c,p)
    tissue = Tissue();
-   tl = tissue.makeTissueList(d_s,n_c);
+   tl = tissue.makeTissueList(d_s,n_c,p);
 
    figure
    hold on
