@@ -50,7 +50,7 @@ for i = 1:size(mcml_data_d.d)
     plot([lambda(1) lambda(end)],[depth depth],'DisplayName',name);
 end
 xlabel('wavelength [nm]')
-ylabel('PD')
+ylabel('skin depth [mm]')
 axis([lambda(1) lambda(end) 0 Fz_size*mcml_data_d.dz])
 set(gca, 'YDir','reverse');
 if(length(mcml_data_d.d) == 6)
@@ -94,8 +94,6 @@ function [PD DO] = pd_do(mcml_data_d,mcml_data_s,PLOTON,lambda)
         layer_boundarys(i) = layer_boundarys(i) +layer_boundarys(i-1);
     end
     for i = 1:length(layer_boundarys)-1
-        %Fz(layer_boundarys(i))
-        %Fz(layer_boundarys(i)-1)
         if Fz(layer_boundarys(i)) > Fz(layer_boundarys(i)-1)
             difference = max(Fz(layer_boundarys(i):layer_boundarys(i)+10))-Fz(layer_boundarys(i)-1);
             Fz(layer_boundarys(i):end) = Fz(layer_boundarys(i):end)-difference;

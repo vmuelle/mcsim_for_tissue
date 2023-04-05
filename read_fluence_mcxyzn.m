@@ -49,7 +49,7 @@ function make_plot(PD,lambda,n_c)
         plot([lambda(1) lambda(end)],[depth depth],'DisplayName',name);
     end
     xlabel('wavelength [nm]')
-    ylabel('PD')
+    ylabel('skin depth [mm]')
     axis([lambda(1) lambda(end) 0 Fz_size*mcml_data_d.dz])
     set(gca, 'YDir','reverse');
     if(length(mcml_data_d.d) == 6)

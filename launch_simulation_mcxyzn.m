@@ -1,24 +1,29 @@
-function launch_simulation_mcxyzn()
-    clear all;
+function launch_simulation_mcxyzn(varargin)
+    if(nargin == 0) 
+        p = 0.3;
+    elseif (nargin == 1)
+        p = varargin{1};
+    end
+    
     
     %Transform parameters into sufficient values
     tissue = Tissue();
-    coeff = tissue.makeTissueList('diastolic','normal');
+    coeff = tissue.makeTissueList('diastolic','normal',p);
     %coeff = coeff(1,:);
     for i = 1:size(coeff,1)
         simulation_per_freq(coeff(i,:),'d','n');
     end
-    coeff = tissue.makeTissueList('diastolic','compressed');
+    coeff = tissue.makeTissueList('diastolic','compressed',p);
     %coeff = coeff(1,:);
     for i = 1:size(coeff,1)
         simulation_per_freq(coeff(i,:),'d','c');
     end
-    coeff = tissue.makeTissueList('systolic','normal');
+    coeff = tissue.makeTissueList('systolic','normal',p);
     %coeff = coeff(1,:);
     for i = 1:size(coeff,1)
         simulation_per_freq(coeff(i,:),'s','n');
     end
-    coeff = tissue.makeTissueList('systolic','compressed');
+    coeff = tissue.makeTissueList('systolic','compressed',p);
     %coeff = coeff(1,:);
     for i = 1:size(coeff,1)
         simulation_per_freq(coeff(i,:),'s','c');

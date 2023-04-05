@@ -1,12 +1,16 @@
-function launch_simulation_mcml()
-    clear all;
+function launch_simulation_mcml(varargin)
+    if(nargin == 0) 
+        p = 0.3;
+    elseif (nargin == 1)
+        p = varargin{1};
+    end
  
     %get the parameters for tissue with different properties
     tissue = Tissue();
-    tissue_list_dn = tissue.makeTissueList('diastolic','normal');
-    tissue_list_dc = tissue.makeTissueList('diastolic','compressed');
-    tissue_list_sn = tissue.makeTissueList('systolic','normal');
-    tissue_list_sc = tissue.makeTissueList('systolic','compressed');
+    tissue_list_dn = tissue.makeTissueList('diastolic','normal',p);
+    tissue_list_dc = tissue.makeTissueList('diastolic','compressed',p);
+    tissue_list_sn = tissue.makeTissueList('systolic','normal',p);
+    tissue_list_sc = tissue.makeTissueList('systolic','compressed',p);
     
     
     %set parameters for simulation 

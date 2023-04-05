@@ -15,7 +15,7 @@ classdef Tissue
     end
     methods(Access = public)
 
-        function tissueList = makeTissueList(self,d_,n_)
+        function tissueList = makeTissueList(self,d_,n_,p)
         %function tissue = makeTissueList(d_,n_)
         %  Returns a list of tissue structures with wavelengths from 400 to 1000 nm
         %  with 50 nm steps (so it's 13 wavelenths) with properties d_: 'diastolic' or 'systolic and n_: 'normal' or
@@ -25,7 +25,7 @@ classdef Tissue
             nmLIB = [470 530 660 770 810 940 1020 1050];
             %for i = 400:50:1000  %for i = 400:50:1000 
             for i = nmLIB
-                tissue = self.makeTissue(i,d_,n_);
+                tissue = self.makeTissue(i,d_,n_,p);
                 tissue(1).nm = i;
                 tissueList(j,:) = tissue;
                 j=j+1;
@@ -34,11 +34,11 @@ classdef Tissue
     end
     methods(Access = private)
 
-        function tissue = makeTissue(obj,nm_,d_,n_)
-        %function tissue = makeTissue(nm_,d_,n_)
+        function tissue = makeTissue(obj,nm_,d_,n_,p)
+        %function tissue = makeTissue(nm_,d_,n_,p)
         %   Returns the tissue optical properties at the wavelength nm with
         %   properties d_: 'diastolic' or 'systolic and n_: 'normal' or
-        %   'compressed'
+        %   'compressed' and p giving the pulsation increase.
         %       tissue = [name; n; mua; mus; g; d]';
         %       uses SpectralLIB.mat
               
@@ -46,7 +46,7 @@ classdef Tissue
             obj.c_w_0 = 0.65;       %coefficient that accounts for background measurement
             obj.spO2 = 0.97;        %aterial oxygen saturation
             obj.svO2 = 0.67;        %venious oxgen saturation
-            obj.p = 0.3;            %pulsation increase
+            obj.p = p;              %pulsation increase
             obj.anisotrophy = 0.9;  %anisotrophy
             obj.sc_b = 0.1;         %decaying factor for scattering
             if(obj.nm>580)                                                                          

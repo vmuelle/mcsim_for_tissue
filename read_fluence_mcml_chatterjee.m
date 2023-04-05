@@ -40,14 +40,10 @@ for i = 1:size(mcml_data_d.d)
     plot([lambda(1) lambda(end)],[depth depth],'DisplayName',name);
 end
 xlabel('wavelength [nm]')
-ylabel('PD')
+ylabel('skin depth [mm]')
 axis([lambda(1) lambda(end) 0 Fz_size*mcml_data_d.dz])
 set(gca, 'YDir','reverse');
-if(length(mcml_data_d.d) == 6)
-    title("Penetration Depth and Depth Origin for normal skin")
-else
-    title("Penetration Depth and Depth Origin for compressed skin")
-end
+title("Penetration Depth and Depth Origin for normal skin")
 hold off
 legend
 end
@@ -145,11 +141,7 @@ function PD  = pd_do(mcml_data_d,PLOTON,lambda)
         ylabel('Flux F/max(F)')
         %set(gca, 'YDir','reverse');
         %view([90 -90])
-        if(size(mcml_data_d.d) == 6)
-            title(sprintf("Flux and Delta flux for normal skin at %d nm",lambda))
-        else
-            title(sprintf("Flux and Delta flux for compressed skin at %d nm",lambda))
-        end
+        title(sprintf("Flux and Delta flux for normal skin at %d nm",lambda))
         grid;
     end
 end
