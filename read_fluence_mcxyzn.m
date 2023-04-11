@@ -39,7 +39,7 @@ function make_plot(PD,lambda,n_c,len)
     filename = "data_files/outputs/sample_d_"+n_c+"_470.mco";
     mcml_data_d = Readmcml(filename);
     Fz_size = size(mcml_data_d.Fz,1);
-    PD = PD./len;
+    PD = PD.*mcml_data_d.dz;
     plot(lambda,PD,'DisplayName','PD')
 
     depth = 0;
