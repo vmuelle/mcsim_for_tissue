@@ -102,7 +102,7 @@ classdef Tissue
                     if(strcmp(d_,'diastolic'))
                         tissue(i).mua = obj.absorption_diastolic_state(i);
                     elseif(strcmp(d_,'systolic'))
-                        [tissue(i).mua, tissue(i).d] = obj.absorption_systolic_state(i);
+                        tissue(i).mua = obj.absorption_systolic_state(i);
                     else 
                         error('wrong input paramter for d_')
                     end
@@ -139,7 +139,7 @@ classdef Tissue
                     if(strcmp(d_,'diastolic'))
                         tissue(i).mua = obj.absorption_diastolic_state(i);
                     elseif(strcmp(d_,'systolic'))
-                        [tissue(i).mua, tissue(i).d] = obj.absorption_systolic_state(i);
+                        tissue(i).mua = obj.absorption_systolic_state(i);
                     else
                         error('wrong input parameter for d_')
                     end
@@ -215,7 +215,7 @@ classdef Tissue
         end
         
         
-        function [mua,d_s] = absorption_systolic_state(obj,layer)
+        function mua = absorption_systolic_state(obj,layer)
         %function mua = absorption_systolic_state(layer)
         % Returns the absorption coefficient 'mua' for a given 'layer' WITH blood in systolic state
         

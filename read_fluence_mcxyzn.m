@@ -7,7 +7,7 @@ function read_fluence_mcxyzn(PLOTON)
         PD(j) = getPD(Fz);
         j=j+1;
     end
-    make_plot(PD,freq,'n');
+    make_plot(PD,freq,'n',length(Fz));
 
     j = 1;
     PD = zeros(length(freq),1);
@@ -16,7 +16,7 @@ function read_fluence_mcxyzn(PLOTON)
         PD(j) = getPD(Fz);
         j=j+1;
     end
-    make_plot(PD,freq,'c');
+    make_plot(PD,freq,'c',length(Fz));
 
     
 end
@@ -33,13 +33,13 @@ function PD = getPD(Fz)
     end
 end
 
-function make_plot(PD,lambda,n_c)
+function make_plot(PD,lambda,n_c,len)
     figure
     hold on
     filename = "data_files/outputs/sample_d_"+n_c+"_470.mco";
     mcml_data_d = Readmcml(filename);
     Fz_size = size(mcml_data_d.Fz,1);
-    PD = PD./800;
+    PD = PD./len;
     plot(lambda,PD,'DisplayName','PD')
 
     depth = 0;
@@ -90,7 +90,8 @@ function Fz = getfluence(i,n_c,PLOTON)
     for i = 1:size(F,3)
         Fz(i) = sum(sum(F(:,:,i)));
     end
-    x = [0:1:800-1];
+    x = [0:1:length(Fz)-1];
+    %x = [0:1:800-1];
     if(PLOTON)
     figure
     plot(x,Fz);

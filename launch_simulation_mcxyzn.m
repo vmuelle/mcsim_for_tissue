@@ -36,7 +36,7 @@ function simulation_per_freq(coeff,d_s,c_n)
     photons = 100000;
     dz = 0.001; 
     n_dr = 200; %1000;
-    n_dz = 800; 
+    %n_dz = 800; 
     n_dz = 0;
     for i = 1:size(coeff,2)
         n_dz = n_dz + coeff(i).d/dz;
@@ -50,12 +50,9 @@ function simulation_per_freq(coeff,d_s,c_n)
     cfg.time = 1;               %Simulation time in min
     
     cfg.binsize = dz;        %Length of a voxel
-    sum_d = 0;
-    for i = 1:size(coeff,2)
-        sum_d = sum_d + coeff(i).d;
-    end
-    Nz = sum_d/dz;
-    Nz = cast(Nz,'uint32');
+   
+    n_dz = cast(n_dz,'uint32');
+    n_dz = cast(n_dz,'double');
     cfg.dim = [n_dr,n_dr,n_dz]; %Number of voxels in each direction [Nx,Ny,Nz]
     
     
