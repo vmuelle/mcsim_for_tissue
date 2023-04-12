@@ -1,0 +1,146 @@
+##########################################
+# coefficients_d_n.mci
+# 	This is an input files for MCM
+#	Lengths are in cm, mua and mus are in 1/cm.
+#
+#	Multiple runs are stipulated.
+##########################################
+
+1.0                      	# file version
+8                        	# number of runs
+#### SPECIFY DATA FOR RUN 1 at lambda = 470
+#InParm                    	# Input parameters. cm is used.
+data_files/outputs/chatterjee_470.mco 	A            	# output file name, ASCII.
+100000	                  	    # No. of photons
+0.001000	0.001000               	# dz, dr [cm]
+765	1000	90                	# No. of dz, dr, da.
+
+5                        	# Number of layers
+#n	mua	mus	g	d         	# One line for each layer
+1                         	# n for medium above
+1.330000	126.2	8.107398	0.900000	0.080000    	# layer 1
+1.370000	7.19	10.809863	0.900000	0.015000    	# layer 2
+1.400000	47.8	10.809863	0.900000	0.120000    	# layer 4
+1.400000	6.8	10.809863	0.900000	0.050000    	# layer 5
+1.440000	16.5	5.404932	0.900000	0.500000    	# layer 6
+1                        	# n for medium below
+
+#### SPECIFY DATA FOR RUN 2 at lambda = 530
+#InParm                    	# Input parameters. cm is used.
+data_files/outputs/chatterjee_530.mco 	A            	# output file name, ASCII.
+100000	                  	    # No. of photons
+0.001000	0.001000               	# dz, dr [cm]
+765	1000	90                	# No. of dz, dr, da.
+
+5                        	# Number of layers
+#n	mua	mus	g	d         	# One line for each layer
+1                         	# n for medium above
+1.330000	84.6	8.010575	0.900000	0.080000    	# layer 1
+1.370000	8.73	10.680766	0.900000	0.015000    	# layer 2
+1.400000	61.9	10.680766	0.900000	0.120000    	# layer 4
+1.400000	8.52	10.680766	0.900000	0.050000    	# layer 5
+1.440000	20.8	5.320383	0.900000	0.500000    	# layer 6
+1                        	# n for medium below
+
+#### SPECIFY DATA FOR RUN 3 at lambda = 660
+#InParm                    	# Input parameters. cm is used.
+data_files/outputs/chatterjee_660.mco 	A            	# output file name, ASCII.
+100000	                  	    # No. of photons
+0.001000	0.001000               	# dz, dr [cm]
+765	1000	90                	# No. of dz, dr, da.
+
+5                        	# Number of layers
+#n	mua	mus	g	d         	# One line for each layer
+1                         	# n for medium above
+1.330000	40.7	10.842116	0.900000	0.080000    	# layer 1
+1.370000	0.36	14.456155	0.900000	0.015000    	# layer 2
+1.400000	0.9	14.456155	0.900000	0.120000    	# layer 4
+1.400000	0.26	14.456155	0.900000	0.050000    	# layer 5
+1.440000	0.4	7.228078	0.900000	0.500000    	# layer 6
+1                        	# n for medium below
+
+#### SPECIFY DATA FOR RUN 4 at lambda = 770
+#InParm                    	# Input parameters. cm is used.
+data_files/outputs/chatterjee_770.mco 	A            	# output file name, ASCII.
+100000	                  	    # No. of photons
+0.001000	0.001000               	# dz, dr [cm]
+765	1000	90                	# No. of dz, dr, da.
+
+5                        	# Number of layers
+#n	mua	mus	g	d         	# One line for each layer
+1                         	# n for medium above
+1.330000	24.4	10.758872	0.900000	0.080000    	# layer 1
+1.370000	0.29	14.345162	0.900000	0.015000    	# layer 2
+1.400000	1.1	14.345162	0.900000	0.120000    	# layer 4
+1.400000	0.23	14.345162	0.900000	0.050000    	# layer 5
+1.440000	0.42	7.172581	0.900000	0.500000    	# layer 6
+1                        	# n for medium below
+
+#### SPECIFY DATA FOR RUN 5 at lambda = 810
+#InParm                    	# Input parameters. cm is used.
+data_files/outputs/chatterjee_810.mco 	A            	# output file name, ASCII.
+100000	                  	    # No. of photons
+0.001000	0.001000               	# dz, dr [cm]
+765	1000	90                	# No. of dz, dr, da.
+
+5                        	# Number of layers
+#n	mua	mus	g	d         	# One line for each layer
+1                         	# n for medium above
+1.330000	20.7	10.731663	0.900000	0.080000    	# layer 1
+1.370000	0.42	14.308883	0.900000	0.015000    	# layer 2
+1.400000	1.4	14.308883	0.900000	0.120000    	# layer 4
+1.400000	0.42	14.308883	0.900000	0.050000    	# layer 5
+1.440000	0.64	7.154442	0.900000	0.500000    	# layer 6
+1                        	# n for medium below
+
+#### SPECIFY DATA FOR RUN 6 at lambda = 940
+#InParm                    	# Input parameters. cm is used.
+data_files/outputs/chatterjee_940.mco 	A            	# output file name, ASCII.
+100000	                  	    # No. of photons
+0.001000	0.001000               	# dz, dr [cm]
+765	1000	90                	# No. of dz, dr, da.
+
+5                        	# Number of layers
+#n	mua	mus	g	d         	# One line for each layer
+1                         	# n for medium above
+1.330000	12.6	10.652091	0.900000	0.080000    	# layer 1
+1.370000	0.51	14.202788	0.900000	0.015000    	# layer 2
+1.400000	2.1	14.202788	0.900000	0.120000    	# layer 4
+1.400000	0.55	14.202788	0.900000	0.050000    	# layer 5
+1.440000	0.91	7.101394	0.900000	0.500000    	# layer 6
+1                        	# n for medium below
+
+#### SPECIFY DATA FOR RUN 7 at lambda = 1020
+#InParm                    	# Input parameters. cm is used.
+data_files/outputs/chatterjee_1020.mco 	A            	# output file name, ASCII.
+100000	                  	    # No. of photons
+0.001000	0.001000               	# dz, dr [cm]
+765	1000	90                	# No. of dz, dr, da.
+
+5                        	# Number of layers
+#n	mua	mus	g	d         	# One line for each layer
+1                         	# n for medium above
+1.330000	9.7	10.608678	0.900000	0.080000    	# layer 1
+1.370000	0.55	14.144903	0.900000	0.015000    	# layer 2
+1.400000	2.0	14.144903	0.900000	0.120000    	# layer 4
+1.400000	0.63	14.144903	0.900000	0.050000    	# layer 5
+1.440000	0.97	7.072452	0.900000	0.500000    	# layer 6
+1                        	# n for medium below
+
+#### SPECIFY DATA FOR RUN 8 at lambda = 1050
+#InParm                    	# Input parameters. cm is used.
+data_files/outputs/chatterjee_1050.mco 	A            	# output file name, ASCII.
+100000	                  	    # No. of photons
+0.001000	0.001000               	# dz, dr [cm]
+765	1000	90                	# No. of dz, dr, da.
+
+5                        	# Number of layers
+#n	mua	mus	g	d         	# One line for each layer
+1                         	# n for medium above
+1.330000	8.9	10.593313	0.900000	0.080000    	# layer 1
+1.370000	0.68	14.124417	0.900000	0.015000    	# layer 2
+1.400000	1.9	14.124417	0.900000	0.120000    	# layer 4
+1.400000	0.83	14.124417	0.900000	0.050000    	# layer 5
+1.440000	0.11	7.062208	0.900000	0.500000    	# layer 6
+1                        	# n for medium below
+

@@ -2,7 +2,6 @@ coeff_version.m
 Coefficients.m
 untitled.m
 writecoefficientstofile.m
-*.mci
 *.mco
 *.asv
 *.bin
