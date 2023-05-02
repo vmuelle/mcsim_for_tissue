@@ -53,9 +53,9 @@ function make_plot(PD,lambda,n_c,len)
     axis([lambda(1) lambda(end) 0 Fz_size*mcml_data_d.dz])
     set(gca, 'YDir','reverse');
     if(length(mcml_data_d.d) == 6)
-        title("Penetration Depth and Depth Origin for normal skin mcxyzn")
+        title("Penetration Depth for normal skin mcxyzn")
     else
-        title("Penetration Depth and Depth Origin for compressed skin mcxyzn")
+        title("Penetration Depth for compressed skin mcxyzn")
     end
     hold off
     legend

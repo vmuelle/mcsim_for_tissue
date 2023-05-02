@@ -1,8 +1,19 @@
 function launch_simulation_mcxyzn(varargin)
     if(nargin == 0) 
         p = 0.3;
+        make_circle_ = 0;
     elseif (nargin == 1)
         p = varargin{1};
+        make_circle_ = 0;
+    elseif  (nargin == 4)
+        p = varargin{1};
+        %radius = 50/2;
+        %center = [200,200,800]/2;
+        %tissue_type = 3;
+        radius = varargin{2};
+        center = varargin{3};
+        tissue_type = varargin{4};
+        make_circle_ = 1;
     end
     
     
@@ -11,29 +22,29 @@ function launch_simulation_mcxyzn(varargin)
     coeff = tissue.makeTissueList('diastolic','normal',p);
     %coeff = coeff(1,:);
     for i = 1:size(coeff,1)
-        simulation_per_freq(coeff(i,:),'d','n');
+        simulation_per_freq(coeff(i,:),'d','n',radius,center,tissue_type.mua(i),make_circle_);
     end
     coeff = tissue.makeTissueList('diastolic','compressed',p);
     %coeff = coeff(1,:);
     for i = 1:size(coeff,1)
-        simulation_per_freq(coeff(i,:),'d','c');
+        simulation_per_freq(coeff(i,:),'d','c',radius,center,tissue_type.mua(i),make_circle_);
     end
     coeff = tissue.makeTissueList('systolic','normal',p);
     %coeff = coeff(1,:);
     for i = 1:size(coeff,1)
-        simulation_per_freq(coeff(i,:),'s','n');
+        simulation_per_freq(coeff(i,:),'s','n',radius,center,tissue_type.mua(i),make_circle_);
     end
     coeff = tissue.makeTissueList('systolic','compressed',p);
     %coeff = coeff(1,:);
     for i = 1:size(coeff,1)
-        simulation_per_freq(coeff(i,:),'s','c');
+        simulation_per_freq(coeff(i,:),'s','c',radius,center,tissue_type.mua(i),make_circle_);
     end
 end
     
-function simulation_per_freq(coeff,d_s,c_n)
+function simulation_per_freq(coeff,d_s,c_n,radius,center,tissue_type,make_circle_)
 
     %Parameters for the simulation
-    photons = 100000;
+    %photons = 100000;
     dz = 0.001; 
     n_dr = 200; %1000;
     %n_dz = 800; 
@@ -92,12 +103,17 @@ function simulation_per_freq(coeff,d_s,c_n)
     zsurf = 0.0100;  % position of air/skin surface
     
     
+    cfg.muav = [cfg.muav tissue_type];
+    cfg.musv = [cfg.musv coeff(1).mus];
+    cfg.gv   = [cfg.gv coeff(1).g];
+    cfg.nv   = [cfg.nv coeff(1).n];
+
     T_t = make_tissue(cfg,T,coeff,dz);
-    
-    radius = 50/2;
-    center = [200,200,800]/2;
-    %T_tc = make_circle(cfg,T_t,radius,center,3);
-    
+
+    if (make_circle_)
+        T_t = make_circle(cfg,T_t,radius,center,size(cfg.muav));
+    end
+
     cfg.T = T_t;
     
     disp('Tissue finished')
