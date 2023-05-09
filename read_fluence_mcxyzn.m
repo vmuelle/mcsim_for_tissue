@@ -1,22 +1,22 @@
-function read_fluence_mcxyzn(PLOTON)
+function read_fluence_mcxyzn(PLOTON,make_circle_)
     freq = [470,530,660,770,810,940,1020,1050];
     j = 1;
     PD = zeros(length(freq),1);
     for i = freq
-        Fz = getfluence(i,'n',PLOTON);
+        Fz = getfluence(i,'n',PLOTON,make_circle_);
         PD(j) = getPD(Fz);
         j=j+1;
     end
-    make_plot(PD,freq,'n',length(Fz));
+    make_plot(PD,freq,'n');
 
     j = 1;
     PD = zeros(length(freq),1);
     for i = freq
-        Fz = getfluence(i,'c',PLOTON);
+        Fz = getfluence(i,'c',PLOTON,make_circle_);
         PD(j) = getPD(Fz);
         j=j+1;
     end
-    make_plot(PD,freq,'c',length(Fz));
+    make_plot(PD,freq,'c');
 
     
 end
@@ -33,7 +33,7 @@ function PD = getPD(Fz)
     end
 end
 
-function make_plot(PD,lambda,n_c,len)
+function make_plot(PD,lambda,n_c)
     figure
     hold on
     filename = "data_files/outputs/sample_d_"+n_c+"_470.mco";
@@ -64,9 +64,11 @@ end
 
 
 
-function Fz = getfluence(i,n_c,PLOTON)
+function Fz = getfluence(i,n_c,PLOTON,make_circle)
     name = strcat('data_files/outputs/mcxyzn/moco_params_d_',n_c,'_',num2str(i,'%d'));
-    
+    if make_circle
+        name = strcat('data_files/outputs/mcxyzn/moco_params_circle_d_',n_c,'_',num2str(i,'%d'));
+    end
     filename = sprintf('%s_H.mci',name);
     %disp(['loading ' filename])
     fid = fopen(filename, 'r');

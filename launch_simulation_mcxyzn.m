@@ -2,9 +2,15 @@ function launch_simulation_mcxyzn(varargin)
     if(nargin == 0) 
         p = 0.3;
         make_circle_ = 0;
+        radius = 0;
+        center = 0;
+        tissue_type.mua = [0,0,0,0,0,0,0,0];
     elseif (nargin == 1)
         p = varargin{1};
         make_circle_ = 0;
+        radius = 0;
+        center = 0;
+        tissue_type.mua = [0,0,0,0,0,0,0,0];
     elseif  (nargin == 4)
         p = varargin{1};
         %radius = 50/2;
@@ -67,7 +73,7 @@ function simulation_per_freq(coeff,d_s,c_n,radius,center,tissue_type,make_circle
     cfg.dim = [n_dr,n_dr,n_dz]; %Number of voxels in each direction [Nx,Ny,Nz]
     
     
-    cfg.mcflag       = 0;   % launch: 0 = uniform beam, 1 = Gaussian, 2 = isotropic pt. 
+    cfg.mcflag       = 3;   % launch: 0 = uniform beam, 1 = Gaussian, 2 = isotropic pt. 
                             % 3 = rectangular beam (use xfocus,yfocus for x,y halfwidths)
     cfg.launchflag   = 0;   % 0 = let mcxyz.c calculate launch trajectory
                             % 1 = manually set launch vector.
@@ -80,7 +86,7 @@ function simulation_per_freq(coeff,d_s,c_n,radius,center,tissue_type,make_circle
     cfg.srcpos   = [0,0,0.0001];   % Set position of source [x,y,z];
     cfg.srcfocus = [0,0,inf]; % Set position of focus, so mcxyz can calculate launch trajectory
                               % [xfocus,yfocus,zfocus];
-    cfg.radius   = 0.15;         % 1/e radius of beam at tissue surface
+    cfg.radius   = 0.0001;         % 1/e radius of beam at tissue surface
     cfg.waist    = 0.15;         % 1/e radius of beam at focus
     
     % only used if launchflag == 1 (manually set launch trajectory) / ux^2 + uy^2 + uz^2 = 1
@@ -111,7 +117,8 @@ function simulation_per_freq(coeff,d_s,c_n,radius,center,tissue_type,make_circle
     T_t = make_tissue(cfg,T,coeff,dz);
 
     if (make_circle_)
-        T_t = make_circle(cfg,T_t,radius,center,size(cfg.muav));
+        T_t = make_circle(cfg,T_t,radius,center,size(cfg.muav,2));
+        cfg.name = "data_files\outputs\mcxyzn\moco_params_circle_"+d_s+"_"+c_n+"_"+coeff(1).nm;
     end
 
     cfg.T = T_t;
