@@ -1,5 +1,5 @@
 
-[cfg,F,T] = readfluence('data_files/outputs/mcxyzn/moco_params_d_n_470');
+[cfg,F,T] = readfluence('data_files/outputs/mcxyzn/moco_params_circle_d_n_470');
 
 
 SAVEPICSON = 0;
@@ -26,6 +26,7 @@ zdiff = zmax-zmin;
 xmin = min(x);
 xmax = max(x);
 xdiff = xmax-xmin;
+radius = 0.0001;
 
 Tzx = reshape(T(:,Ny/2,:),Nx,Nz)';
 PRINTON = 0;

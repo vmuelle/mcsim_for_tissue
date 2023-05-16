@@ -97,5 +97,7 @@ function Fz = getfluence(i,n_c,PLOTON,make_circle)
     if(PLOTON)
     figure
     plot(x,Fz);
+    xlabel('wavelength [nm]')
+    ylabel('skin depth [mm]')
     end
 end
