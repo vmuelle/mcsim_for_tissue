@@ -52,7 +52,7 @@ function simulation_per_freq(coeff,d_s,c_n,radius,center,tissue_type,make_circle
     %Parameters for the simulation
     %photons = 100000;
     dz = 0.001; 
-    n_dr = 200; %1000;
+    n_dr = 600; %1000;
     %n_dz = 800; 
     n_dz = 0;
     for i = 1:size(coeff,2)
