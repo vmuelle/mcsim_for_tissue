@@ -3,7 +3,7 @@ function read_fluence_mcxyzn(PLOTON,make_circle_)
     j = 1;
     PD = zeros(length(freq),1);
     for i = freq
-        Fz = getfluence(i,'n',PLOTON,make_circle_);
+        Fz = getfluence(i,'n',PLOTON,make_circle_,i);
         PD(j) = getPD(Fz);
         j=j+1;
     end
@@ -12,7 +12,7 @@ function read_fluence_mcxyzn(PLOTON,make_circle_)
     j = 1;
     PD = zeros(length(freq),1);
     for i = freq
-        Fz = getfluence(i,'c',PLOTON,make_circle_);
+        Fz = getfluence(i,'c',PLOTON,make_circle_,i);
         PD(j) = getPD(Fz);
         j=j+1;
     end
@@ -64,7 +64,7 @@ end
 
 
 
-function Fz = getfluence(i,n_c,PLOTON,make_circle)
+function Fz = getfluence(i,n_c,PLOTON,make_circle,lambda)
     name = strcat('data_files/outputs/mcxyzn/moco_params_d_',n_c,'_',num2str(i,'%d'));
     if make_circle
         name = strcat('data_files/outputs/mcxyzn/moco_params_circle_d_',n_c,'_',num2str(i,'%d'));
@@ -97,7 +97,13 @@ function Fz = getfluence(i,n_c,PLOTON,make_circle)
     if(PLOTON)
     figure
     plot(x,Fz);
-    xlabel('wavelength [nm]')
-    ylabel('skin depth [mm]')
+    xlabel('skin depth (grid elements)')
+    ylabel('Fluence')
+    if(length(Fz) == 773)
+        title(sprintf("Flux for normal skin at %d nm mcxyzn",lambda))
+    else
+        title(sprintf("Flux for compressed skin at %d nm mcxyzn",lambda))
+    end
+    grid;
     end
 end

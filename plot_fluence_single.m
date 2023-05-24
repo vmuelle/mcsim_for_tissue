@@ -1,5 +1,5 @@
 
-[cfg,F,T] = readfluence('data_files/outputs/mcxyzn/moco_params_circle_d_n_470');
+[cfg,F,T] = readfluence('data_files/outputs/mcxyzn/moco_params_d_n_470');
 
 
 SAVEPICSON = 0;

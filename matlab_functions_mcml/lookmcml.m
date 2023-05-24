@@ -19,5 +19,5 @@ global PLOTON PRINTON
 
 PLOTON = 1; PRINTON = 0;
 
-getmcml('data_files/outputs/sample_d_n_530.mco')
+getmcml('data_files/outputs/sample_d_n_470.mco')
 

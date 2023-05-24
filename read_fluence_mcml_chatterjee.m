@@ -43,7 +43,7 @@ xlabel('wavelength [nm]')
 ylabel('skin depth [mm]')
 axis([lambda(1) lambda(end) 0 Fz_size*mcml_data_d.dz])
 set(gca, 'YDir','reverse');
-title("Penetration Depth and Depth Origin for normal skin")
+title("Penetration Depth for normal skin")
 hold off
 legend
 end

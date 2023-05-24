@@ -124,6 +124,9 @@ function simulation_per_freq(coeff,d_s,c_n,radius,center,tissue_type,make_circle
     cfg.T = T_t;
     
     disp('Tissue finished')
+
+    clear T
+    clear T_t;
     create_simfiles(cfg);
     %%
     launch_simulation(cfg);
@@ -163,7 +166,8 @@ function T = make_circle(cfg,T_,radius_c,center,tissue_type)
     for iz=1:cfg.dim(3)
          for i = 1:cfg.dim(2)
              for j = 1:cfg.dim(1)
-                 if ((round(sqrt(double((center(1)-i)^2+(center(2)-j)^2+(center(3)-iz)^2)))<radius_c))
+                 %if ((round(sqrt(double((center(1)-i)^2+(center(2)-j)^2+(center(3)-iz)^2)))<radius_c))
+                 if ((round(sqrt(double((center(2)-j)^2+(center(3)-iz)^2)))<radius_c))
                     T(i,j,iz) = tissue_type;
                  end
              end

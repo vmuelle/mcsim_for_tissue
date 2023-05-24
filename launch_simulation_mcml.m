@@ -18,7 +18,7 @@ function launch_simulation_mcml(varargin)
     dz = 0.001;                   %separation between grid lines (cm) in z direction                                                                                                                                                                 
     dr = 0.001;                   %separation between grid lines (cm) in r direction
     n_dr = 1000;                  %no of grid elements in r direction        
-    n_da = 90;                    %no of parts of an 90 degree angle, that is spanned between the photon exiting direction and the surface normal
+    n_da = 30;%90;                    %no of parts of an 90 degree angle, that is spanned between the photon exiting direction and the surface normal
     sim = [photons,dz,dr,n_dr,n_da];
     
     %print mcml input files and launch simulation
