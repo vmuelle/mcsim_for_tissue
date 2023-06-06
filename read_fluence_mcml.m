@@ -54,9 +54,9 @@ ylabel('skin depth [mm]')
 axis([lambda(1) lambda(end) 0 Fz_size*mcml_data_d.dz])
 set(gca, 'YDir','reverse');
 if(length(mcml_data_d.d) == 6)
-    title("Penetration Depth and Depth Origin for normal skin")
+    title("Penetration Depth and Depth Origin for normal skin mcml")
 else
-    title("Penetration Depth and Depth Origin for compressed skin")
+    title("Penetration Depth and Depth Origin for compressed skin mcml")
 end
 hold off
 legend
@@ -175,7 +175,7 @@ function [PD DO] = pd_do(mcml_data_d,mcml_data_s,PLOTON,lambda)
         %plot([DO DO],[0 1],'DisplayName','DO');
         hold off 
         legend
-        xlabel('depth (grid elements)')
+        xlabel('skin depth (grid elements)')
         ylabel('Flux F/max(F)')
         %set(gca, 'YDir','reverse');
         %view([90 -90])

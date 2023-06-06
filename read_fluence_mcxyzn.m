@@ -58,7 +58,7 @@ function make_plot(PD,lambda,n_c)
         title("Penetration Depth for compressed skin mcxyzn")
     end
     hold off
-    legend
+    legend('Location','southwest')
 
 end
 
@@ -96,9 +96,14 @@ function Fz = getfluence(i,n_c,PLOTON,make_circle,lambda)
     %x = [0:1:800-1];
     if(PLOTON)
     figure
-    plot(x,Fz);
+    hold on
+    plot(x,Fz/max(Fz),'DisplayName','Flux in percent');
+    PD = getPD(Fz);
+    plot([PD PD],[0 1],'DisplayName','PD(at 63 percent)')
+    hold off
+    legend
     xlabel('skin depth (grid elements)')
-    ylabel('Fluence')
+    ylabel('Flux F/max(F)')
     if(length(Fz) == 773)
         title(sprintf("Flux for normal skin at %d nm mcxyzn",lambda))
     else

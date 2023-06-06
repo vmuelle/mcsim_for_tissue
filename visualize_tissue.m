@@ -20,7 +20,7 @@ function visualize_tissue(d_s,n_c,p)
    hold off
 
    xlabel('wavelength [nm]')
-   ylabel('mua')
+   ylabel('\mu_a [cm^{-1}]')
    axis([lambda(1) lambda(end) 0 maxmua])
    legend
 end

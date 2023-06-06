@@ -1,53 +1,17 @@
-function launch_simulation_mcxyzn(varargin)
-    if(nargin == 0) 
-        p = 0.3;
-        make_circle_ = 0;
-        radius = 0;
-        center = 0;
-        tissue_type.mua = [0,0,0,0,0,0,0,0];
-    elseif (nargin == 1)
-        p = varargin{1};
-        make_circle_ = 0;
-        radius = 0;
-        center = 0;
-        tissue_type.mua = [0,0,0,0,0,0,0,0];
-    elseif  (nargin == 4)
-        p = varargin{1};
-        %radius = 50/2;
-        %center = [200,200,800]/2;
-        %tissue_type = 3;
-        radius = varargin{2};
-        center = varargin{3};
-        tissue_type = varargin{4};
-        make_circle_ = 1;
-    end
-    
-    
+function vismcxyzn1photon()
+ 
+    p = 0.3; 
+    tissue_type.mua = [0,0,0,0,0,0,0,0];
     %Transform parameters into sufficient values
     tissue = Tissue();
     coeff = tissue.makeTissueList('diastolic','normal',p);
     %coeff = coeff(1,:);
     for i = 1:size(coeff,1)
-        simulation_per_freq(coeff(i,:),'d','n',radius,center,tissue_type.mua(i),make_circle_);
-    end
-    coeff = tissue.makeTissueList('diastolic','compressed',p);
-    %coeff = coeff(1,:);
-    for i = 1:size(coeff,1)
-        simulation_per_freq(coeff(i,:),'d','c',radius,center,tissue_type.mua(i),make_circle_);
-    end
-    coeff = tissue.makeTissueList('systolic','normal',p);
-    %coeff = coeff(1,:);
-    for i = 1:size(coeff,1)
-        simulation_per_freq(coeff(i,:),'s','n',radius,center,tissue_type.mua(i),make_circle_);
-    end
-    coeff = tissue.makeTissueList('systolic','compressed',p);
-    %coeff = coeff(1,:);
-    for i = 1:size(coeff,1)
-        simulation_per_freq(coeff(i,:),'s','c',radius,center,tissue_type.mua(i),make_circle_);
+        simulation_per_freq(coeff(i,:),'d','n',tissue_type.mua(i));
     end
 end
     
-function simulation_per_freq(coeff,d_s,c_n,radius,center,tissue_type,make_circle_)
+function simulation_per_freq(coeff,d_s,c_n,tissue_type)
 
     %Parameters for the simulation
     %photons = 100000;
@@ -62,9 +26,9 @@ function simulation_per_freq(coeff,d_s,c_n,radius,center,tissue_type,make_circle
     %%% Basic MC configuration %%%
     cfg.SAVEON = 1; % 1 = save myname_T.bin, myname_H.mci 
                     % 0 = don't save. Just check the program.
-    cfg.name = "data_files\outputs\mcxyzn\moco_params_"+d_s+"_"+c_n+"_"+coeff(1).nm;
+    cfg.name = "data_files\outputs\mcxyzn\single_photon_"+d_s+"_"+c_n+"_"+coeff(1).nm;
     %cfg.name = "moco_params_d_n_"+coeff(1).nm;
-    cfg.time = 1;               %Simulation time in min
+    cfg.time = 0.001;               %Simulation time in min
     
     cfg.binsize = dz;        %Length of a voxel
    
@@ -113,13 +77,10 @@ function simulation_per_freq(coeff,d_s,c_n,radius,center,tissue_type,make_circle
     cfg.musv = [cfg.musv coeff(1).mus];
     cfg.gv   = [cfg.gv coeff(1).g];
     cfg.nv   = [cfg.nv coeff(1).n];
+    
+    disp('Create Tissue')
 
     T_t = make_tissue(cfg,T,coeff,dz);
-
-    if (make_circle_)
-        T_t = make_circle(cfg,T_t,radius,center,size(cfg.muav,2));
-        cfg.name = "data_files\outputs\mcxyzn\moco_params_circle_"+d_s+"_"+c_n+"_"+coeff(1).nm;
-    end
 
     cfg.T = T_t;
     
@@ -130,7 +91,7 @@ function simulation_per_freq(coeff,d_s,c_n,radius,center,tissue_type,make_circle
     create_simfiles(cfg);
     %%
     launch_simulation(cfg);
-    %[fluence] = plot_mcresults(cfg);
+    
 
 end
 
@@ -160,21 +121,7 @@ function T= make_tissue(cfg,T_,coeff,dz)
 end
 
 
-%einfügen eines zusätzlichen blutgefäß
-function T = make_circle(cfg,T_,radius_c,center,tissue_type)
-    T = T_;
-    for iz=1:cfg.dim(3)
-         for i = 1:cfg.dim(2)
-             for j = 1:cfg.dim(1)
-                 %if ((round(sqrt(double((center(1)-i)^2+(center(2)-j)^2+(center(3)-iz)^2)))<radius_c))
-                 if ((round(sqrt(double((center(2)-j)^2+(center(3)-iz)^2)))<radius_c))
-                    T(i,j,iz) = tissue_type;
-                 end
-             end
-         end
-     end % iz
-end
- 
+
 
 
 
